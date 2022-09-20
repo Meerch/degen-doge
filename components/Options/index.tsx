@@ -27,7 +27,7 @@ const options = [
     },
     {
         image: '/images/options/option-2.jpg',
-        name: 'option 1',
+        name: 'option 2',
         description: 'tweet a photo of pooing dog with a hashtags #degendoge and #dogechain',
         button: {
             color: '#B17655',
