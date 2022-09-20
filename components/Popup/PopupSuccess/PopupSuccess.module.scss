@@ -1,0 +1,45 @@
+.popup {
+  width: 529px;
+  height: 335px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  //justify-content: center;
+}
+
+.title {
+  margin-top: 50px;
+  font-size: 32px;
+}
+
+.description {
+  font-size: 32px;
+  text-align: center;
+  margin-top: 15px;
+  line-height: 45px;
+}
+
+
+.button {
+  margin-top: 15px;
+  height: 100px;
+  width: 220px;
+  background-color: #B0D28E;
+  display: flex;
+  border: 4px solid #9C8060;
+
+  &:hover {
+    background-color: #C3FF87;
+  }
+
+  &:active,
+  &.active {
+    background-color: #739650;
+  }
+
+  .text {
+    font-size: 32px;
+    line-height: 45px;
+    margin: auto;
+  }
+}

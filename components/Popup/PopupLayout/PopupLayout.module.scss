@@ -1,0 +1,29 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.55);
+  z-index: 100;
+
+  //padding: 9px;
+  //box-sizing: content-box;
+}
+
+.popup {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(#F2C794, #F2C794) 50% 50%/calc(100% - 18px) calc(100% - 18px) no-repeat, linear-gradient(rgba(0, 0, 0, 0.30) 0%, rgba(72, 171, 224, 0) 50%, rgba(0, 0, 0, 0.30) 100%);
+}
+
+.close {
+  position: absolute;
+  right: 30px;
+  top: 20px;
+  padding: 15px 20px;
+  cursor: pointer;
+  font-size: 32px;
+}

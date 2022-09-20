@@ -1,0 +1,40 @@
+@import '/styles/variables';
+
+.details {
+  width: 100%;
+  height: 700px;
+  display: flex;
+  position: relative;
+  background: #FFBC6D;
+  flex-flow: column nowrap;
+  padding-top: 70px;
+  background: linear-gradient(#ffbc6d, #ffbc6d) 50% 50%/calc(100% - 18px) calc(100% - 18px) no-repeat, linear-gradient(transparent 0%, #000000 0%, #ffbc6d 0%, rgba(0, 0, 0, 0.298) 51%, rgba(0, 0, 0, 0.57) 97%);
+
+  @media (min-width: $media-screen-notebook) {
+    justify-content: center;
+    height: 550px;
+    padding-top: 20px;
+    padding-left: 110px;
+    background: url("/images/background-doges.png") no-repeat top / cover;
+  }
+}
+
+.text {
+  width: auto;
+  text-align: center;
+  text-shadow: 1px 0 1px #fff,
+  0 1px 1px #fff,
+  -1px 0 1px #fff,
+  0 -1px 1px #fff;
+  font-size: 40px;
+  margin-bottom: 35px;
+
+  @media (min-width: $media-screen-notebook) {
+    font-size: 47px;
+    text-align: left;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

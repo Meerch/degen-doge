@@ -1,0 +1,25 @@
+@import "/styles/variables";
+
+.wrapper {
+  position: relative;
+  margin-top: 170px;
+  height: 470px;
+  width: 100%;
+  overflow: hidden;
+
+  @media (max-width: $media-screen-notebook - 1) {
+    height: auto;
+    margin-top: 80px;
+  }
+}
+
+.image {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+
+  @media (max-width: $media-screen-notebook - 1) {
+    display: none;
+  }
+}

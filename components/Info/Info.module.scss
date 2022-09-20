@@ -1,0 +1,39 @@
+@import "/styles/variables";
+
+.info {
+  margin-top: 150px;
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+
+}
+
+.tabs {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.tab {
+  padding: 0 20px;
+  height: 150px;
+  width: 50%;
+  background: rgb(168, 140, 124);
+  background: linear-gradient(180deg, rgba(168, 140, 124, 1) 0%, rgba(254, 206, 151, 1) 100%);
+  transition: all .1s linear;
+  display: flex;
+
+
+  &.active {
+    background: rgb(168, 140, 124);
+    background: linear-gradient(180deg, rgba(168, 140, 124, 1) 0%, rgba(254, 184, 102, 1) 100%);
+  }
+
+  .text {
+    margin: auto;
+    font-size: 45px;
+
+    @media (min-width: $media-screen-notebook) {
+      font-size: 65px;
+    }
+  }
+}
