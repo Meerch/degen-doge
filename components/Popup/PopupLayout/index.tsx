@@ -1,16 +1,17 @@
 import React, {FC, HTMLProps, useEffect, useRef} from 'react'
-import {useOnClickOutside} from 'usehooks-ts'
 import styles from './PopupLayout.module.scss'
 import {useDispatch} from "react-redux";
 import {changeCurrentPopup} from "../../../redux/actions/popup";
 import classNames from 'classnames';
+import useOnClickOutside from "../../../hooks/useOnClickOutside";
 
 interface PopupLayoutProps {
 
 }
 
 const PopupLayout: FC<HTMLProps<PopupLayoutProps>> = ({children, className}) => {
-    const ref = useRef(null)
+    const refPopup = useRef(null)
+    const refOutside = useRef(null)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -27,11 +28,11 @@ const PopupLayout: FC<HTMLProps<PopupLayoutProps>> = ({children, className}) => 
         dispatch(changeCurrentPopup(null))
     }
 
-    useOnClickOutside(ref, handlerClosePopup)
+    useOnClickOutside(refPopup, handlerClosePopup)
 
     return (
-        <div className={styles.container}>
-            <div ref={ref} className={classNames(styles.popup, className)}>
+        <div ref={refOutside} className={styles.container}>
+            <div ref={refPopup} className={classNames(styles.popup, className)}>
                 {children}
 
                 <div
