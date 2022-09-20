@@ -11,7 +11,6 @@ interface PopupLayoutProps {
 
 const PopupLayout: FC<HTMLProps<PopupLayoutProps>> = ({children, className}) => {
     const refPopup = useRef(null)
-    const refOutside = useRef(null)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -31,7 +30,7 @@ const PopupLayout: FC<HTMLProps<PopupLayoutProps>> = ({children, className}) => 
     useOnClickOutside(refPopup, handlerClosePopup)
 
     return (
-        <div ref={refOutside} className={styles.container}>
+        <div className={styles.container}>
             <div ref={refPopup} className={classNames(styles.popup, className)}>
                 {children}
 
