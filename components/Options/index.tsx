@@ -100,7 +100,13 @@ const Options = () => {
                             >
                                 {name}
                             </span>
-                            <div className={styles.description}>{description}</div>
+                            <div
+                                className={classNames(
+                                    styles.description,
+                                    index === 1 && styles.second
+                            )}>
+                                {description}
+                            </div>
                             <div
                                 className={classNames(
                                     styles.info,

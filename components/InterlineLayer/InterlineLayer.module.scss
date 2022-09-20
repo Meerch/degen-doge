@@ -13,11 +13,29 @@
   }
 }
 
+@keyframes slide {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+
+.containerCarousel {
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
 .image {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  transform: translateX(-50%);
+  background: url('/images/carousel.png') repeat-x 100% / contain;
+  height: 286px;
+  min-width: 3472px;
+  animation: slide 40s linear infinite;
 
   @media (max-width: $media-screen-notebook - 1) {
     display: none;

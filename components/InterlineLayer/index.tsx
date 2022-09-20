@@ -5,14 +5,13 @@ import Tape from "./Tape"
 const InterlineLayer = () => {
     return (
         <div className={styles.wrapper}>
-            <img
-                className={styles.image}
-                src="/images/examples-doge.png"
-                alt="doges"
-            />
+            <div className={styles.containerCarousel}>
+                <div className={styles.image}/>
+                <div className={styles.image}/>
+            </div>
 
-            <Tape />
-            <Tape />
+            <Tape/>
+            <Tape/>
         </div>
     )
 }
