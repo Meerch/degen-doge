@@ -4,23 +4,23 @@ import styles from './KeyFeatures.module.scss'
 const features = [
     {
         image: '/images/intro-doge.jpg',
-        name: 'much wow 1'
+        name: '150 unique traits '
     },
     {
         image: '/images/intro-doge.jpg',
-        name: 'much wow 2'
+        name: 'Much wow'
     },
     {
         image: '/images/intro-doge.jpg',
-        name: 'much wow 3'
+        name: 'Dogs'
     },
     {
         image: '/images/intro-doge.jpg',
-        name: 'much wow 4'
+        name: 'Eco-Friendly'
     },
     {
         image: '/images/intro-doge.jpg',
-        name: 'much wow 5'
+        name: 'Based on IPFS'
     }
 ]
 
