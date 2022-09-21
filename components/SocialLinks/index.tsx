@@ -5,7 +5,7 @@ import styles from './SocialLinks.module.scss'
 const socialLinks = [
     {
         name: 'twitter',
-        href: ''
+        href: 'https://twitter.com/degennftdoge?s=21&t=s6lfbT7PiUGFmJSlvcHN7A'
     },
     {
         name: 'telegram',
