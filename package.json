@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "export": "next export",
-    "postinstall": "node pi.js"
+    "export": "next export"
   },
   "dependencies": {
     "classnames": "^2.3.2",
@@ -23,7 +22,6 @@
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "sass": "^1.54.9",
-    "use-wallet": "^0.13.6",
     "wagmi": "^0.6.6",
     "web3": "^1.8.0"
   },
