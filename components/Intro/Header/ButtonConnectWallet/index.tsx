@@ -7,6 +7,7 @@ import {TypeCurrentPopup} from "../../../../redux/reducers/popup";
 import {RootState} from "../../../../redux/reducers";
 import classNames from "classnames";
 
+
 const ButtonConnectWallet = () => {
     const {currentPopup}: { currentPopup: TypeCurrentPopup } = useSelector((state: RootState) => ({
         currentPopup: state.popup.currentPopup
@@ -19,6 +20,7 @@ const ButtonConnectWallet = () => {
 
     return (
         <div className={styles.wrapper}>
+
             <Button
                 onClick={handlerOpenModalConnectWallet}
                 className={classNames(

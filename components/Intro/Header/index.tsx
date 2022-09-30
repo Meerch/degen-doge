@@ -1,9 +1,10 @@
 import React from 'react'
 import styles from './Header.module.scss'
-import ButtonConnectWallet from "./ButtonConnectWallet";
 import SocialLinks from "../../SocialLinks";
+import ButtonConnectWallet from "./ButtonConnectWallet";
 
 const Header = () => {
+
     return (
         <div className={styles.header}>
             <div className={styles.logo}>
@@ -17,10 +18,9 @@ const Header = () => {
                     degen <br/> doge
                 </span>
             </div>
+
             <ButtonConnectWallet/>
 
-            {/*<div className="test"/>*/}
-            {/*<br/>*/}
             <SocialLinks/>
         </div>
     );
