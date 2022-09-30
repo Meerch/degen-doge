@@ -1,6 +1,5 @@
 import { Contract, ContractInterface, ethers, Signer } from "ethers"
 // import abiMerkel from "../contracts/contractMerkle"
-import { Account, AccountType, Status } from "use-wallet/dist/cjs/types"
 import { storage } from "../../utils"
 import web3 from 'web3'
 import {
@@ -18,7 +17,7 @@ type TypeContract = Contract
 type TypeProvider = any
 
 export type TypeWallet = {
-    account: Account | null;
+    account: any;
     balance: string;
     chainId: number | undefined;
     connect: (connectorId: string) => Promise<void>;
@@ -30,8 +29,8 @@ export type TypeWallet = {
     isConnected: () => boolean;
     networkName: string | null;
     reset: () => void;
-    status: Status;
-    type: AccountType | null;
+    status: any;
+    type: any;
 }
 
 const createProvider = (provider: TypePropExternalProvider): TypeProvider => {
