@@ -4,7 +4,6 @@ import PopupLayout from "../PopupLayout";
 import Button from '../../UI/Button';
 import {useDispatch} from "react-redux";
 import {changeCurrentPopup} from "../../../redux/actions/popup";
-import {useWallet} from "use-wallet";
 import { bscChainId } from '../../../config/config';
 import {useAccount, useConnect, useDisconnect, useEnsName} from "wagmi";
 // import {InjectedConnector} from "@wagmi/core";

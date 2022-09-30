@@ -60,7 +60,6 @@ import {Provider} from 'react-redux'
 import store from '../redux/store'
 import 'normalize.css'
 import '../styles/globals.scss'
-import {UseWalletProvider} from "use-wallet";
 import {bscChainId, useWalletUrl} from '../config/config'
 import {configureChains, chain, Chain, createClient, WagmiConfig} from 'wagmi'
 import {publicProvider} from 'wagmi/providers/public'
