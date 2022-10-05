@@ -1,16 +1,21 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import styles from './PopupConnectWallet.module.scss'
 import PopupLayout from "../PopupLayout";
 import Button from '../../UI/Button';
 import {useDispatch} from "react-redux";
 import {changeCurrentPopup} from "../../../redux/actions/popup";
-import {useAccount, useConnect} from "wagmi";
+import {useAccount, useConnect, useDisconnect, useNetwork, useSwitchNetwork} from "wagmi";
+import {chainId} from "../../../config/configBlockchain";
 
 const PopupConnectWallet = () => {
     const dispatch = useDispatch()
-    const { connect, connectors } = useConnect()
-
-    const { address, isConnected } = useAccount()
+    const {connect, connectors} = useConnect()
+    const {address, connector, isConnected} = useAccount()
+    const {chain} = useNetwork()
+    const {chains, error, isLoading, pendingChainId, switchNetwork} =
+        useSwitchNetwork({chainId})
+    const {disconnect} = useDisconnect()
+    const [prevSelector, setPrevSelector] = useState(null)
 
     useEffect(() => {
         if (isConnected) {
@@ -18,15 +23,16 @@ const PopupConnectWallet = () => {
         }
     }, [isConnected])
 
-    // const onConnectWallet = (connector) => {
-    //     if (method === 'injected' && wallet.chainId !== bscChainId) {
-    //                     await window.ethereum.request({
-    //                         method: 'wallet_switchEthereumChain',
-    //                         params: [{chainId: `0x${bscChainId}`}], // chainId must be in hexadecimal numbers, 0x1 - ETH mainnet, 0x4 - Rinkeby testent
-    //                     })
-    //                     await wallet.connect(method)
-    //                 }
-    // }
+    useEffect(() => {
+        console.log('connector', connector)
+        console.log('chain', chain)
+        console.log('chains', chains)
+    }, [connector, chain])
+
+
+    const onConnectWallet = (connector) => {
+        connect({connector, chainId})
+    }
 
     return (
         <PopupLayout className={styles.popup}>
@@ -38,7 +44,7 @@ const PopupConnectWallet = () => {
                     connectors && connectors.map(connector => (
                         <Button
                             key={connector.id}
-                            onClick={() => connect({connector})}
+                            onClick={() => onConnectWallet(connector)}
                             className={styles.button}>
                             {/*<span className={styles.text}>connect with dogewallet</span>*/}
                             <span className={styles.text}>connect with {connector.name}</span>

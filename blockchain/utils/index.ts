@@ -3,10 +3,10 @@ import { Contract, ContractInterface, ethers, Signer } from "ethers"
 import { storage } from "../../utils"
 import web3 from 'web3'
 import {
-    isTestNet, bscChainId, bscUrl,
+    isTestNet, bscUrl,
     address,
-    productionAddress,
-} from "../../config/config"
+    productionAddress, chainId,
+} from "../../config/configBlockchain"
 
 // const MerkelAddress = isTestNet ? testnetMerkelAddress : productionMerkelAddress
 
@@ -36,7 +36,7 @@ export type TypeWallet = {
 const createProvider = (provider: TypePropExternalProvider): TypeProvider => {
     return provider
         ? new ethers.providers.Web3Provider(provider)
-        : new ethers.providers.JsonRpcProvider(bscUrl, bscChainId)
+        : new ethers.providers.JsonRpcProvider(bscUrl, chainId)
 }
 
 const createContract = (
@@ -77,7 +77,7 @@ export const checkWallet = async (wallet: TypeWallet) => {
 
         await window.ethereum.request({
             method: 'wallet_switchEthereumChain',
-            params: [{ chainId: `0x${bscChainId}` }], // chainId must be in hexadecimal numbers, 0x1 - ETH mainnet, 0x4 - Rinkeby testent
+            params: [{ chainId: `0x${chainId}` }], // chainId must be in hexadecimal numbers, 0x1 - ETH mainnet, 0x4 - Rinkeby testent
         })
         await wallet.connect(getConnectorId)
     } else {
