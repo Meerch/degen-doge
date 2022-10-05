@@ -29,15 +29,32 @@
     margin-left: 90px;
     margin-top: 140px;
     border: 5px solid #000;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .time {
+      font-size: 32px;
+      position: absolute;
+      bottom: -40px;
+      right: 0;
+    }
 
     @media (min-width: $media-screen-notebook) {
-      background: linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 20px) calc(100% - 20px) no-repeat, linear-gradient(130deg, #ffb800 0%, rgba(0, 0, 0, 0.5) 63%, #ffb800 68%);
+      background:  linear-gradient(130deg, #ffb800 0%, rgba(0, 0, 0, 0.5) 63%, #ffb800 68%);
       border-radius: 0;
-      padding: 20px;
+      padding: 10px;
       box-sizing: content-box;
       border: none;
-      width: 383px;
-      height: 423px;
+      width: 400px;
+      height: 450px;
+
+      &:after {
+
+      }
     }
   }
 

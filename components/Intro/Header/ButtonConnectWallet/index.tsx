@@ -6,6 +6,9 @@ import {changeCurrentPopup} from "../../../../redux/actions/popup";
 import {TypeCurrentPopup} from "../../../../redux/reducers/popup";
 import {RootState} from "../../../../redux/reducers";
 import classNames from "classnames";
+import {useAccount, useDisconnect} from "wagmi";
+import {hideAccountAddress} from "../../../../utils";
+import useRenderOnlyClient from "../../../../hooks/useRenderOnlyClient";
 
 
 const ButtonConnectWallet = () => {
@@ -13,27 +16,50 @@ const ButtonConnectWallet = () => {
         currentPopup: state.popup.currentPopup
     }))
     const dispatch = useDispatch()
+    const {isConnected, address} = useAccount()
+    const {disconnect} = useDisconnect()
+    const {isReadyRender} = useRenderOnlyClient()
+
 
     const handlerOpenModalConnectWallet = () => {
-        dispatch(changeCurrentPopup('connect-wallet'))
+        if (isConnected) {
+            disconnect()
+        } else {
+            dispatch(changeCurrentPopup('connect-wallet'))
+        }
     }
 
     return (
-        <div className={styles.wrapper}>
+        isReadyRender && <div className={styles.wrapper}>
 
             <Button
                 onClick={handlerOpenModalConnectWallet}
                 className={classNames(
                     styles.button,
-                    currentPopup === 'connect-wallet' && styles.active
+                    {
+                        [styles.active]: currentPopup === 'connect-wallet',
+                        [styles.disconnect]: isConnected
+                    }
                 )}
             >
-                <span className={styles.text}>connect wallet</span>
+                <span className={styles.text}>
+                    {isConnected ? 'disconnect' : 'connect wallet'}
+                </span>
             </Button>
 
-            <span className={styles.balance}>
-                your balance: 4443 $wDOGE
-            </span>
+            {
+                isConnected &&
+                <span className={styles.balance}>
+                    your balance: 4443 $WC
+                </span>
+            }
+
+            {
+                isConnected &&
+                <span className={styles.address}>
+                    your address: {hideAccountAddress(address)}
+                </span>
+            }
         </div>
     )
 }

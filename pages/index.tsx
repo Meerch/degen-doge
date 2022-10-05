@@ -10,7 +10,6 @@ import {useSelector} from "react-redux";
 import {RootState} from "../redux/reducers";
 import {TypeCurrentPopup} from "../redux/reducers/popup";
 import PopupConnectWallet from "../components/Popup/PopupConnectWallet";
-import Plug from "../components/Plug";
 import PopupBuyNft from "../components/Popup/PopupBuyNft";
 import PopupSuccess from "../components/Popup/PopupSuccess";
 

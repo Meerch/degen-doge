@@ -4,62 +4,48 @@ import PopupLayout from "../PopupLayout";
 import Button from '../../UI/Button';
 import {useDispatch} from "react-redux";
 import {changeCurrentPopup} from "../../../redux/actions/popup";
-import { bscChainId } from '../../../config/config';
-import {useAccount, useConnect, useDisconnect, useEnsName} from "wagmi";
-// import {InjectedConnector} from "@wagmi/core";
-import { InjectedConnector } from 'wagmi/connectors/injected'
+import {useAccount, useConnect} from "wagmi";
 
 const PopupConnectWallet = () => {
     const dispatch = useDispatch()
-    // const wallet = useWallet()
-
-    // const connectWallet = async (method: 'injected' | 'walletconnect') => {
-    //     try {
-    //         await wallet.connect(method)
-    //
-    //         if (method === 'injected' && wallet.chainId !== bscChainId) {
-    //             await window.ethereum.request({
-    //                 method: 'wallet_switchEthereumChain',
-    //                 params: [{chainId: `0x${bscChainId}`}], // chainId must be in hexadecimal numbers, 0x1 - ETH mainnet, 0x4 - Rinkeby testent
-    //             })
-    //             await wallet.connect(method)
-    //         }
-    //         // dispatch(changeCurrentPopup(null))
-    //     } catch (e) {
-    //         console.log('e', e.message)
-    //     }
-    // }
-    //
-    // useEffect(() => {
-    //     console.log(wallet)
-    // }, [wallet])
-
-    const { connect } = useConnect({
-        connector: new InjectedConnector(),
-    })
+    const { connect, connectors } = useConnect()
 
     const { address, isConnected } = useAccount()
-    // const { data: ensName } = useEnsName({ address })
 
-    const connectWallet = (method: 'injected' | 'walletconnect') => {
-        connect()
-    }
+    useEffect(() => {
+        if (isConnected) {
+            dispatch(changeCurrentPopup(null))
+        }
+    }, [isConnected])
 
-    // useEffect(() => {
-    //     console.log('account', address)
-    // }, [address])
-    //
-    // const { disconnect } = useDisconnect()
+    // const onConnectWallet = (connector) => {
+    //     if (method === 'injected' && wallet.chainId !== bscChainId) {
+    //                     await window.ethereum.request({
+    //                         method: 'wallet_switchEthereumChain',
+    //                         params: [{chainId: `0x${bscChainId}`}], // chainId must be in hexadecimal numbers, 0x1 - ETH mainnet, 0x4 - Rinkeby testent
+    //                     })
+    //                     await wallet.connect(method)
+    //                 }
+    // }
 
     return (
         <PopupLayout className={styles.popup}>
-            <span className={styles.title}>connect wallet</span>
-            <span className={styles.title}>{address}</span>
+            <span className={styles.title}>Connect wallet</span>
+            {/*<span className={styles.title}>{address}</span>*/}
 
-            <Button onClick={() => connectWallet('injected')} className={styles.button}>
-                <span className={styles.text}>connect with dogewallet</span>
-            </Button>
-
+            <div className={styles.buttons}>
+                {
+                    connectors && connectors.map(connector => (
+                        <Button
+                            key={connector.id}
+                            onClick={() => connect({connector})}
+                            className={styles.button}>
+                            {/*<span className={styles.text}>connect with dogewallet</span>*/}
+                            <span className={styles.text}>connect with {connector.name}</span>
+                        </Button>
+                    ))
+                }
+            </div>
             {/*<button onClick={() => disconnect()}>Disconnect</button>*/}
         </PopupLayout>
     )

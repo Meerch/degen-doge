@@ -6,11 +6,16 @@ const Content = () => {
     return (
         <div className={styles.content}>
             <div className={styles.poster}>
-                <img
-                    className={styles.image}
-                    src="/images/intro-doge.jpg"
-                    alt="Doge"
-                />
+                <div className={styles.image}>
+                    <img
+
+                        // src="/images/intro-doge.jpg"
+                        src="/images/intro.gif"
+                        alt="Doge"
+                    />
+
+                    <span className={styles.time}>04:10:34:12</span>
+                </div>
 
                 <div className={styles.text}>
                     degen

@@ -8,6 +8,12 @@ const Intro = () => {
         <div className={styles.intro}>
             <Header />
             <Content />
+            <div className={styles.backgroundText}>
+                <span className={styles.text}>wen lambo</span>
+                <span className={styles.text}>much wow</span>
+                <span className={styles.text}>420x</span>
+                <span className={styles.text}>to the moon...</span>
+            </div>
         </div>
     );
 };

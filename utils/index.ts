@@ -8,3 +8,7 @@ export const storage = (key: string, value: any = false) => {
         return false
     }
 }
+
+export const hideAccountAddress = (address: string | null, valueFirstLetter = 8) => {
+    return address ? `${address.slice(0, valueFirstLetter)}...${address.slice(-4)}` : ''
+}

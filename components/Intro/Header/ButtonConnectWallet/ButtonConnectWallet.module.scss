@@ -1,8 +1,9 @@
-@import "../../../../styles/variables";
+@import "styles/variables";
 
 .wrapper {
   display: flex;
   flex-flow: column nowrap;
+  position: relative;
 
   @media (min-width: $media-screen-notebook) {
     order: 3;
@@ -10,14 +11,14 @@
 }
 
 .button {
-  background-color: #92A87D;
+  background: #92A87D;
   width: 180px;
   height: 57px;
   display: flex;
 
   @media (min-width: $media-screen-notebook) {
     border: 5px solid #BC8423!important;
-    background-color: #B0D28E;
+    background: #B0D28E;
     width: 320px;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   }
@@ -31,6 +32,16 @@
     background-color: #739651;
   }
 
+  &.disconnect {
+    background: #FF5C5C;
+    border: 5px solid #FFB800!important;
+
+    &:hover {
+      background: #FF0505;
+    }
+  }
+
+
   .text {
     margin: auto;
     font-size: 22px;
@@ -41,12 +52,23 @@
   }
 }
 
-.balance {
+
+
+.balance,
+.address {
   font-size: 21px;
   display: none;
+  position: absolute;
+  bottom: -50%;
+  left: 0;
+  z-index: -10;
 
   @media (min-width: $media-screen-notebook) {
     display: inline;
-    margin-top: 10px;
+    //margin-top: 10px;
   }
+}
+
+.address {
+  top: -50%;
 }

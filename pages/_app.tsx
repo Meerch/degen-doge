@@ -61,8 +61,10 @@ import store from '../redux/store'
 import 'normalize.css'
 import '../styles/globals.scss'
 import {bscChainId, useWalletUrl} from '../config/config'
-import {configureChains, chain, Chain, createClient, WagmiConfig} from 'wagmi'
+import {configureChains, Chain, createClient, WagmiConfig} from 'wagmi'
 import {publicProvider} from 'wagmi/providers/public'
+import {InjectedConnector} from "wagmi/connectors/injected";
+import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 
 const avalancheChain: Chain = {
     id: 2000,
@@ -91,6 +93,15 @@ const client = createClient({
     autoConnect: true,
     provider,
     webSocketProvider,
+    connectors: [
+        new InjectedConnector({ chains }),
+        new WalletConnectConnector({
+            chains,
+            options: {
+                qrcode: true,
+            },
+        }),
+    ],
 })
 
 function App({Component, pageProps}: AppProps) {

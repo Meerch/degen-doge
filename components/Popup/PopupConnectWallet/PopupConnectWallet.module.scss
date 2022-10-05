@@ -1,6 +1,6 @@
 .popup {
   width: 529px;
-  height: 335px;
+  height: 385px;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -8,17 +8,27 @@
 }
 
 .title {
-  margin-top: 50px;
+  margin-top: 40px;
   font-size: 32px;
 }
 
+.buttons {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-top: 35px;
+}
+
 .button {
-  margin-top: 70px;
   height: 100px;
   width: 220px;
   background-color: #B0D28E;
   display: flex;
   border: 4px solid #9C8060;
+  margin-bottom: 25px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
   
   &:hover {
     background-color: #C3FF87;
