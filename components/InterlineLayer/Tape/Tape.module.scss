@@ -22,7 +22,7 @@
     transform: rotate(-4deg);
     opacity: 1;
     z-index: 10;
-    bottom: 100px;
+    bottom: 200px;
 
     @media (max-width: $media-screen-notebook - 1) {
       position: relative;
@@ -41,51 +41,62 @@
 }
 
 @keyframes marquee {
-  0%   { transform: translate(0, 0); }
-  100% { transform: translate(-100%, 0); }
-}
-
-@keyframes inverseMarquee {
-  0%   { transform: translate(-100%, 0); }
-  100% { transform: translate(0, 0); }
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
 }
 
 .text {
-  //display: flex;
-  //flex-flow: row nowrap;
-  //align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
   font-size: 50px;
   color: rgba(0, 0, 0, 0.3);
   white-space: nowrap;
 
-  &:first-child {
+  .wrapper {
+    animation: marquee 40s linear infinite;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
 
-    @media (max-width: $media-screen-notebook - 1) {
-      //margin-left: -180%;
-      margin-left: -800px;
+
+  }
+
+  &:nth-child(2) {
+    .wrapper {
+      animation: marquee 60s linear infinite reverse;
     }
   }
 
-  &:last-child {
-    //animation: inverseMarquee 15s linear infinite;
-    margin-bottom: 0;
-    margin-left: 130px;
-
-    @media (max-width: $media-screen-notebook - 1) {
-      //margin-left: -130%;
-      margin-left: -600px;
-    }
-  }
-
+  //&:first-child(2) {
   //
-  //.wrapper {
-  //  display: flex;
-  //  flex-flow: row nowrap;
-  //  align-items: center;
-  //  animation: marquee 15s linear infinite;
   //}
 
+  //&:first-child {
+  //}
 
+  //&:first-child {
+  //
+  //  @media (max-width: $media-screen-notebook - 1) {
+  //    //margin-left: -180%;
+  //    margin-left: -800px;
+  //  }
+  //}
+  //
+  //&:last-child {
+  //  //animation: inverseMarquee 15s linear infinite;
+  //  margin-bottom: 0;
+  //  margin-left: 130px;
+  //
+  //  @media (max-width: $media-screen-notebook - 1) {
+  //    //margin-left: -130%;
+  //    margin-left: -600px;
+  //  }
+  //}
 }
 
 .word {
