@@ -37,16 +37,18 @@
       padding: 10px;
       box-sizing: content-box;
       border: none;
-      //width: 400px;
       width: 400px;
       height: 400px;
-      //height: 450px;
-      //height: auto;
     }
 
     img {
       width: 100%;
-      height: auto;
+      height: 100%;
+
+      @media (min-width: $media-screen-notebook) {
+        height: auto;
+      }
+
     }
 
     .time {
