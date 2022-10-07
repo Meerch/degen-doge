@@ -1,20 +1,32 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import styles from './Content.module.scss'
-import Button from "../../UI/Button";
+import {calculateDiffTime} from "../../../utils";
+import useRenderOnlyClient from "../../../hooks/useRenderOnlyClient";
 
 const Content = () => {
-    return (
+    const [time, setTime] = useState('')
+    const {isReadyRender} = useRenderOnlyClient()
+    const [deadline, setDeadline] = useState(new Date(2022, 9, 18));
+
+    useEffect(() => {
+        const timerId = setInterval(() => {
+            const diffTime = calculateDiffTime(new Date(), deadline)
+            setTime(diffTime)
+        }, 1000);
+
+        return () => clearInterval(timerId)
+    }, [])
+
+    return isReadyRender && (
         <div className={styles.content}>
             <div className={styles.poster}>
                 <div className={styles.image}>
                     <img
-
-                        // src="/images/intro-doge.jpg"
                         src="/images/intro.gif"
                         alt="Doge"
                     />
 
-                    <span className={styles.time}>04:10:34:12</span>
+                    <span className={styles.time}>{time}</span>
                 </div>
 
                 <div className={styles.text}>
@@ -38,9 +50,14 @@ const Content = () => {
 
                 <div className={styles.wrapperButton}>
                     <img className={styles.image} src="/images/doge.png" alt="Doge"/>
-                    <Button className={styles.button}>
+                    <a
+                        href='https://t.me/degendogechat'
+                        target='_blank'
+                        rel='noreferrer'
+                        className={styles.button}
+                    >
                         join community
-                    </Button>
+                    </a>
                 </div>
             </div>
         </div>

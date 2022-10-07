@@ -5,7 +5,8 @@ export const options = [
         description: 'share your much wow rugpull story with proofs',
         button: {
             color: '#FAB48D',
-            text: 'send proofs'
+            text: 'send proofs',
+            href: 'https://oizyu0xdot8.typeform.com/to/pUD19hqs'
         },
         info: [
             {

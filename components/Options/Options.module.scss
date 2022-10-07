@@ -214,6 +214,11 @@
       margin: auto;
     }
 
+    &.last {
+      filter: grayscale(100%);
+      cursor: default;
+    }
+
     &.two:before {
       content: 'try to win';
       font-size: 20px;
@@ -227,6 +232,15 @@
       @media (min-width: $media-screen-notebook) {
         display: flex;
       }
+    }
+
+    .timer {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -70%;
+      font-size: 25px;
+      z-index: -1;
     }
 
     .doge {
