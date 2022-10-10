@@ -69,7 +69,7 @@ const ButtonConnectWallet = () => {
             {
                 isConnected &&
                 <span className={styles.balance}>
-                    your balance: {balance || ''} $WC
+                    your balance: {balance || 0} $WC
                 </span>
             }
         </div>

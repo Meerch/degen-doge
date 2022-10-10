@@ -18,8 +18,10 @@ import web3 from "web3";
 
 const PopupBuyNft = () => {
     const {address} = useAccount()
+    const dispatch = useDispatch()
     const [amount, setAmount] = useState(0)
     const {isReadyRender} = useRenderOnlyClient()
+
     const {data: availableTokensToMint} = useContractRead(generateContractDogesSetting('remainToMint', {
         args: address,
         select: data => data && toWei(formatEther(data)),
@@ -38,17 +40,21 @@ const PopupBuyNft = () => {
 
     const { config } = usePrepareContractWrite(generateContractDCSetting('approve', {
         // args: [addressDoges, ethers.utils.parseEther(String(+availableTokensToMint * toWei(String(priceDC))))]
-        args: [addressDoges, web3.utils.toWei(String(+availableTokensToMint * +priceDC))]
+        args: [addressDoges, web3.utils.toWei(String(+availableTokensToMint * +priceDC))],
+        enabled: Boolean(availableTokensToMint) && Boolean(priceDC)
     }))
-
     const {write} = useContractWrite(config)
+
+    useEffect(() => {
+        console.log('web3.utils.toWei(String(+availableTokensToMint * +priceDC))', web3.utils.toWei(String(+availableTokensToMint * +priceDC)))
+        console.log('priceDC', priceDC);
+        console.log('availableTokensToMint', availableTokensToMint);
+    }, [priceDC, availableTokensToMint])
 
     const {config: config2} = usePrepareContractWrite(generateContractDogesSetting('mintNft', {
         args: [amount, true]
     }))
     const {write: write2, isSuccess: isSuccessMint} = useContractWrite(config2)
-
-    const dispatch = useDispatch()
 
     const handlerCounter = (value: number) => {
         const plannedValue = amount + value
@@ -99,7 +105,7 @@ const PopupBuyNft = () => {
                     {
                         isReadyRender &&
                         <Button onClick={handlerClickActionButton} className={classNames(styles.button, {
-                            [styles.disabled]: amount === 0 || amount > +availableTokensToMint
+                            [styles.disabled]: (+isApproved >= +priceDC * +availableTokensToMint && amount === 0) || amount > +availableTokensToMint
                         })}>
                             <span className={styles.text}>
                                 {
