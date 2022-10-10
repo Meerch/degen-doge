@@ -21,16 +21,17 @@ const PopupBuyNft = () => {
     const {isReadyRender} = useRenderOnlyClient()
     const {data: availableTokensToMint} = useContractRead(generateContractDogesSetting('remainToMint', {
         args: address,
-        select: data => toWei(formatEther(data))
+        select: data => data && toWei(formatEther(data)),
+        onSuccess: data => console.log('availableTokensToMint', data)
     }))
     const {data: isApproved} = useContractRead(generateContractDCSetting('allowance', {
         args: [address, addressDoges],
-        select: data => formatEther(data),
+        select: data => data && formatEther(data),
         onSuccess: data => console.log('approved amount', data)
     }))
 
     const {data: priceDC} = useContractRead(generateContractDogesSetting('getPriceInDC', {
-        select: data => formatEther(data),
+        select: data => data && formatEther(data),
         onSuccess: data => console.log('Price', data)
     }))
 
@@ -109,7 +110,7 @@ const PopupBuyNft = () => {
                     }
                 </div>
 
-                <span className={styles.available}>{availableTokensToMint}/20 available</span>
+                <span className={styles.available}>{+availableTokensToMint}/20 available</span>
             </div>
         </PopupLayout>
     );
