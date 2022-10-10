@@ -48,7 +48,7 @@ const PopupBuyNft = () => {
         // enabled: false
     }))
 
-    const {write, data: dateApprove} = useContractWrite(config)
+    const {write} = useContractWrite(config)
 
     useEffect(() => {
         // console.log('web3.utils.toWei(String(+availableTokensToMint * +priceDC))', web3.utils.toWei(String(+availableTokensToMint * +priceDC)))
@@ -60,7 +60,7 @@ const PopupBuyNft = () => {
 
     const {config: config2} = usePrepareContractWrite(generateContractDogesSetting('mintNft', {
         args: [amount, true],
-        enabled: (+isApproved >= +priceDC * +availableTokensToMint) || dateApprove
+        // enabled: (+isApproved >= +priceDC * +availableTokensToMint) || dateApprove
     }))
     const {write: write2, isSuccess: isSuccessMint} = useContractWrite(config2)
 
@@ -88,16 +88,16 @@ const PopupBuyNft = () => {
         console.log('priceDC', priceDC)
         console.log('priceDC', priceDC)
         console.log('priceDC * 20', +priceDC * +availableTokensToMint)
-        console.log('approve > price * 20', +isApproved >= toWei(String(priceDC)) * +availableTokensToMint)
+        console.log('approve > price * 20', +isApproved <= +priceDC * +availableTokensToMint)
 
         // write()
 
         if (+isApproved >= +priceDC * +availableTokensToMint) {
-            const res = await write2()
-            console.log('res result', res);
+            write2 && write2()
         // }
         } else {
-            write()
+            console.log('write', write)
+            write && write()
         }
         // dispatch(changeCurrentPopup('success'))
     }
