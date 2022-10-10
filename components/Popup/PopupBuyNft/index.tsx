@@ -24,12 +24,12 @@ const PopupBuyNft = () => {
 
     const {data: availableTokensToMint} = useContractRead(generateContractDogesSetting('remainToMint', {
         args: address,
-        select: data => data && toWei(formatEther(data)),
-        onSuccess: data => console.log('availableTokensToMint', data)
+        select: data => toWei(formatEther(data)),
+        onSuccess: data => console.log('init availableTokensToMint', data)
     }))
     const {data: isApproved} = useContractRead(generateContractDCSetting('allowance', {
         args: [address, addressDoges],
-        select: data => data && formatEther(data),
+        select: data => formatEther(data),
         onSuccess: data => console.log('approved amount', data)
     }))
 
@@ -40,21 +40,33 @@ const PopupBuyNft = () => {
 
     const { config } = usePrepareContractWrite(generateContractDCSetting('approve', {
         // args: [addressDoges, ethers.utils.parseEther(String(+availableTokensToMint * toWei(String(priceDC))))]
-        args: [addressDoges, web3.utils.toWei(String(+availableTokensToMint * +priceDC))],
-        enabled: Boolean(availableTokensToMint) && Boolean(priceDC)
+        args:
+            Boolean(availableTokensToMint) &&
+            Boolean(priceDC) &&
+            [addressDoges, web3.utils.toWei(String(+availableTokensToMint * +priceDC))],
+        // enabled: Boolean(availableTokensToMint)
+        // enabled: false
     }))
-    const {write} = useContractWrite(config)
+
+    const {write, data: dateApprove} = useContractWrite(config)
 
     useEffect(() => {
-        console.log('web3.utils.toWei(String(+availableTokensToMint * +priceDC))', web3.utils.toWei(String(+availableTokensToMint * +priceDC)))
-        console.log('priceDC', priceDC);
+        // console.log('web3.utils.toWei(String(+availableTokensToMint * +priceDC))', web3.utils.toWei(String(+availableTokensToMint * +priceDC)))
+        console.log('priceDC', +priceDC);
         console.log('availableTokensToMint', availableTokensToMint);
+        console.log('aaaaa', +availableTokensToMint * +priceDC);
+        console.log('aaaaa', String(+availableTokensToMint * +priceDC));
     }, [priceDC, availableTokensToMint])
 
     const {config: config2} = usePrepareContractWrite(generateContractDogesSetting('mintNft', {
-        args: [amount, true]
+        args: [amount, true],
+        enabled: (+isApproved >= +priceDC * +availableTokensToMint) || dateApprove
     }))
     const {write: write2, isSuccess: isSuccessMint} = useContractWrite(config2)
+
+    // useEffect(() => {
+    //
+    // }, [dateApprove])
 
     const handlerCounter = (value: number) => {
         const plannedValue = amount + value
