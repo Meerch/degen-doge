@@ -29,6 +29,11 @@ const PopupBuyNft = () => {
         onSuccess: data => console.log('init availableTokensToMint', data)
     }))
 
+    const {data: balance} = useContractRead(generateContractDCSetting('balanceOf', {
+        args: address,
+        select: (data) => +formatEther(data)
+    }))
+
     const {data: isApproved} = useContractRead(generateContractDCSetting('allowance', {
         args: [address, addressDoges],
         select: data => formatEther(data),
@@ -111,7 +116,10 @@ const PopupBuyNft = () => {
                     {
                         isReadyRender &&
                         <Button onClick={handlerClickActionButton} className={classNames(styles.button, {
-                            [styles.disabled]: isSuccessApproved || (+isApproved >= +priceDC * +availableTokensToMint && amount === 0) || amount > +availableTokensToMint
+                            [styles.disabled]: isSuccessApproved ||
+                                (+isApproved >= +priceDC * +availableTokensToMint && amount === 0)
+                            || amount > +availableTokensToMint
+                            || amount * +priceDC > +balance
                         })}>
                             <span className={styles.text}>
                                 {
