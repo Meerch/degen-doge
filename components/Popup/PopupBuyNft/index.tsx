@@ -14,6 +14,7 @@ import {formatEther, toWei} from "../../../utils";
 import classNames from "classnames";
 import useRenderOnlyClient from "../../../hooks/useRenderOnlyClient";
 import {ethers} from "ethers";
+import web3 from "web3";
 
 const PopupBuyNft = () => {
     const {address} = useAccount()
@@ -35,11 +36,12 @@ const PopupBuyNft = () => {
         onSuccess: data => console.log('Price', data)
     }))
 
-    // const { config } = usePrepareContractWrite(generateContractDCSetting('approve', {
-    //     args: [addressDoges, ethers.utils.parseEther(String(+availableTokensToMint * +priceDC))]
-    // }))
-    //
-    // const {write} = useContractWrite(config)
+    const { config } = usePrepareContractWrite(generateContractDCSetting('approve', {
+        // args: [addressDoges, ethers.utils.parseEther(String(+availableTokensToMint * toWei(String(priceDC))))]
+        args: [addressDoges, web3.utils.toWei(String(+availableTokensToMint * +priceDC))]
+    }))
+
+    const {write} = useContractWrite(config)
 
     const {config: config2} = usePrepareContractWrite(generateContractDogesSetting('mintNft', {
         args: [amount, true]
@@ -77,7 +79,7 @@ const PopupBuyNft = () => {
             console.log('res result', res);
         // }
         } else {
-            // write()
+            write()
         }
         // dispatch(changeCurrentPopup('success'))
     }
