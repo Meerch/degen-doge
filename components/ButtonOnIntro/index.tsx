@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './ButtonOnIntro.module.scss'
-import {useContractRead} from "wagmi";
+import {useAccount, useContractRead} from "wagmi";
 import {generateContractDogesSetting} from "../../blockchain/utils";
 import {useDispatch} from "react-redux";
 import {changeCurrentPopup} from "../../redux/actions/popup";
@@ -12,8 +12,16 @@ const ButtonOnIntro = () => {
     }))
     const {isReadyRender} = useRenderOnlyClient()
     const dispatch = useDispatch()
+    const {isConnected} = useAccount()
 
     const handlerClickButton = (event: React.MouseEvent<HTMLHyperlinkElementUtils>) => {
+        console.log('isConnected', isConnected)
+        if (isMintOpen && !isConnected) {
+            event.preventDefault()
+            dispatch(changeCurrentPopup('connect-wallet'))
+            return
+        }
+
         if (isMintOpen) {
             event.preventDefault()
             dispatch(changeCurrentPopup('buy-nft'))

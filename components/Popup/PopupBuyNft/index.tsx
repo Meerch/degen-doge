@@ -23,7 +23,7 @@ const PopupBuyNft: FC<PopupBuyNftProps> = ({onClick}) => {
     const {address} = useAccount()
     const [amount, setAmount] = useState(0)
     const {isReadyRender} = useRenderOnlyClient()
-    const {data: availableTokensToMint = 0} = useContractRead(generateContractDogesSetting('remainToMint', {
+    const {data: availableTokensToMint} = useContractRead(generateContractDogesSetting('remainToMint', {
         args: address,
         select: data => toWei(formatEther(data))
     }))
@@ -35,14 +35,11 @@ const PopupBuyNft: FC<PopupBuyNftProps> = ({onClick}) => {
 
     const {data: priceDC} = useContractRead(generateContractDogesSetting('getPriceInDC', {
         select: data => formatEther(data),
-        onSuccess: data => console.log('PRICE success', data)
+        onSuccess: data => console.log('Price success', data)
     }))
+
     const { config } = usePrepareContractWrite(generateContractDCSetting('approve', {
-        args: [addressDoges || '', ethers.utils.parseEther(String(+availableTokensToMint * +priceDC))]
-        // args: [addressDoges, ethers.utils.parseEther(String(5 * 200))]
-        // args: [address, ethers.utils.parseEther(String(18 * (+priceDC)))]
-        // args: [address, ethers.utils.parseEther(String(18 * +priceDC))]
-        // args: [address, 18 * (toWei(String(priceDC)))]
+        args: [addressDoges, ethers.utils.parseEther(String(+availableTokensToMint * +priceDC))]
     }))
 
     const {write} = useContractWrite(config)
