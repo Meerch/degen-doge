@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import styles from './PopupBuyNft.module.scss'
 import Button from "../../UI/Button";
 import PopupLayout from "../PopupLayout";
@@ -15,11 +15,7 @@ import classNames from "classnames";
 import useRenderOnlyClient from "../../../hooks/useRenderOnlyClient";
 import {ethers} from "ethers";
 
-interface PopupBuyNftProps {
-    onClick?: () => void
-}
-
-const PopupBuyNft: FC<PopupBuyNftProps> = ({onClick}) => {
+const PopupBuyNft = () => {
     const {address} = useAccount()
     const [amount, setAmount] = useState(0)
     const {isReadyRender} = useRenderOnlyClient()
@@ -29,13 +25,13 @@ const PopupBuyNft: FC<PopupBuyNftProps> = ({onClick}) => {
     }))
     const {data: isApproved} = useContractRead(generateContractDCSetting('allowance', {
         args: [address, addressDoges],
-        select: data => toWei(formatEther(data)),
-        onSuccess: data => console.log('isApproved', data)
+        select: data => formatEther(data),
+        onSuccess: data => console.log('approved amount', data)
     }))
 
     const {data: priceDC} = useContractRead(generateContractDogesSetting('getPriceInDC', {
         select: data => formatEther(data),
-        onSuccess: data => console.log('Price success', data)
+        onSuccess: data => console.log('Price', data)
     }))
 
     const { config } = usePrepareContractWrite(generateContractDCSetting('approve', {
@@ -75,7 +71,7 @@ const PopupBuyNft: FC<PopupBuyNftProps> = ({onClick}) => {
 
         // write()
 
-        if (+isApproved >= toWei(String(priceDC)) * +availableTokensToMint) {
+        if (+isApproved >= +priceDC * +availableTokensToMint) {
             const res = await write2()
             console.log('res result', res);
         // }
@@ -104,7 +100,7 @@ const PopupBuyNft: FC<PopupBuyNftProps> = ({onClick}) => {
                         })}>
                             <span className={styles.text}>
                                 {
-                                    +isApproved >= toWei(String(priceDC)) * +availableTokensToMint
+                                    +isApproved >= +priceDC * +availableTokensToMint
                                         ? 'mint'
                                         : 'approve $DC'
                                 }
