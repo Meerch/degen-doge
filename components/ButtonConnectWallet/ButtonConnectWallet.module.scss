@@ -1,4 +1,4 @@
-@import "styles/variables";
+@import "../../styles/variables";
 
 .wrapper {
   display: flex;
@@ -36,9 +36,9 @@
     background: #FF5C5C;
     border: 5px solid #FFB800!important;
 
-    &:hover {
-      background: #FF0505;
-    }
+    //&:hover {
+    //  background: #FF0505;
+    //}
   }
 
 

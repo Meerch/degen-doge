@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Header.module.scss'
 import SocialLinks from "../../SocialLinks";
-import ButtonConnectWallet from "./ButtonConnectWallet";
+import ButtonConnectWallet from "../../ButtonConnectWallet";
 
 const Header = () => {
 

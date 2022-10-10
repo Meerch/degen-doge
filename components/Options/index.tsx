@@ -1,36 +1,24 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import styles from './Options.module.scss'
 import Button from "../UI/Button";
 import classNames from "classnames";
 import {useDispatch} from "react-redux";
 import {changeCurrentPopup} from "../../redux/actions/popup";
 import {options} from "./constants";
-import {calculateDiffTime} from "../../utils";
+import SaleTimer from "../SaleTimer";
+import {useContractRead} from "wagmi";
+import {generateContractDogesSetting} from "../../blockchain/utils";
 
 const Options = () => {
+    const {data: isMintOpen = false} = useContractRead(generateContractDogesSetting('isMintOpen'))
     const dispatch = useDispatch()
-    const [time, setTime] = useState('')
-    const [deadline, setDeadline] = useState(new Date(2022, 9, 18));
 
-    useEffect(() => {
-        const timerId = setInterval(() => {
-            const diffTime = calculateDiffTime(new Date(), deadline)
-            setTime(diffTime)
-        }, 1000);
-
-        return () => clearInterval(timerId)
-    }, [])
-
-    const handlerClickOption = ({index, href, event}) => {
-        if (!href) {
+    const handlerClickOption = (event: React.MouseEvent<HTMLHyperlinkElementUtils>) => {
+        if (isMintOpen) {
             event.preventDefault()
+            dispatch(changeCurrentPopup('buy-nft'))
         }
-
-        // if (index === 2) {
-        //     dispatch(changeCurrentPopup('buy-nft'))
-        // }
     }
-
 
     return (
         <div className={styles.options}>
@@ -80,7 +68,7 @@ const Options = () => {
                             </div>
 
                             <a
-                                onClick={(event) => handlerClickOption({index, event, href: button.href})}
+                                onClick={(event) => !button.href && handlerClickOption(event)}
                                 href={button.href}
                                 target="_blank"
                                 rel='noreferrer'
@@ -90,7 +78,8 @@ const Options = () => {
                                     className={classNames(
                                         styles.button,
                                         index === 1 && styles.two,
-                                        options.length - 1 === index && styles.last
+                                        options.length - 1 === index && styles.last,
+                                        options.length - 1 === index && !isMintOpen && styles.inactive
                                     )}
                                 >
                                     <span className={styles.text}>{button.text}</span>
@@ -101,7 +90,7 @@ const Options = () => {
 
                                     {
                                         index === 2 &&
-                                        <span className={styles.timer}>{time}</span>
+                                        <SaleTimer className={styles.timer}/>
                                     }
                                 </Button>
                             </a>

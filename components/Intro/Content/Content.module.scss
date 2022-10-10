@@ -51,8 +51,7 @@
 
     }
 
-    .time {
-      font-size: 32px;
+    .timer {
       position: absolute;
       bottom: -40px;
       right: 0;
@@ -128,54 +127,6 @@
 
     @media (min-width: $media-screen-notebook) {
       margin-top: 45px;
-    }
-  }
-
-  .wrapperButton {
-    position: relative;
-    margin: 120px auto 0;
-
-    @media (min-width: $media-screen-notebook) {
-      margin: 45px 0;
-    }
-
-    .image {
-      position: absolute;
-      z-index: -1;
-      top: -60px;
-      right: 0;
-
-      @media (min-width: $media-screen-notebook) {
-        top: 15px;
-        right: 15px;
-      }
-    }
-  }
-
-  .button {
-    width: 320px;
-    height: 57px;
-    font-size: 32px;
-    background-color: #A88C7D;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    &:hover {
-      background-color: #FF8282;
-    }
-
-    &:active,
-    &.active {
-      background-color: #FF0505;
-    }
-
-    @media (min-width: $media-screen-notebook) {
-      background-color: #FF5C5C;
-      border: 5px solid #FFB800;
-      width: 343px;
-      height: 75px;
-      margin: 75px 0 0;
     }
   }
 }

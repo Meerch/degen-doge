@@ -1,23 +1,10 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import styles from './Content.module.scss'
-import {calculateDiffTime} from "../../../utils";
-import useRenderOnlyClient from "../../../hooks/useRenderOnlyClient";
+import SaleTimer from "../../SaleTimer";
+import ButtonOnIntro from "../../ButtonOnIntro";
 
 const Content = () => {
-    const [time, setTime] = useState('')
-    const {isReadyRender} = useRenderOnlyClient()
-    const [deadline, setDeadline] = useState(new Date(2022, 9, 18));
-
-    useEffect(() => {
-        const timerId = setInterval(() => {
-            const diffTime = calculateDiffTime(new Date(), deadline)
-            setTime(diffTime)
-        }, 1000);
-
-        return () => clearInterval(timerId)
-    }, [])
-
-    return isReadyRender && (
+    return (
         <div className={styles.content}>
             <div className={styles.poster}>
                 <div className={styles.image}>
@@ -26,7 +13,7 @@ const Content = () => {
                         alt="Doge"
                     />
 
-                    <span className={styles.time}>{time}</span>
+                    <SaleTimer className={styles.timer}/>
                 </div>
 
                 <div className={styles.text}>
@@ -48,17 +35,7 @@ const Content = () => {
                     className={styles.dogechain}
                 />
 
-                <div className={styles.wrapperButton}>
-                    <img className={styles.image} src="/images/doge.png" alt="Doge"/>
-                    <a
-                        href='https://t.me/degendogechat'
-                        target='_blank'
-                        rel='noreferrer'
-                        className={styles.button}
-                    >
-                        join community
-                    </a>
-                </div>
+                <ButtonOnIntro />
             </div>
         </div>
     )

@@ -1,3 +1,6 @@
+import {BigNumberish, ethers} from "ethers";
+import web3 from "web3";
+
 export const storage = (key: string, value: any = false) => {
     try {
         if (typeof window !== 'undefined') {
@@ -25,4 +28,13 @@ export const calculateDiffTime = (start: Date, end: Date) => {
     seconds = seconds < 10 ? '0' + seconds : seconds;
 
     return `${days}:${hours}:${minutes}:${seconds}`
+}
+
+
+export const formatEther = (value: BigNumberish): string => {
+    return ethers.utils.formatEther(value)
+}
+
+export const toWei = (value: string): number => {
+    return +web3.utils.toWei(value, "ether")
 }

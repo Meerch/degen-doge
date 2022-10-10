@@ -1,20 +1,41 @@
-import { Contract, ContractInterface, ethers, Signer } from "ethers"
-// import abiMerkel from "../contracts/contractMerkle"
-import { storage } from "../../utils"
-import web3 from 'web3'
+import {Contract, ContractInterface, ethers, Signer} from "ethers"
+import abiDoges from "../contracts/contractDoges"
+import abiDC from "../contracts/contractDC"
 import {
-    isTestNet, bscUrl,
-    address,
-    productionAddress, chainId,
+    isTestNet,
+    bscUrl,
+    chainId,
+    testAddressContractDoges,
+    productionAddressContractDoges,
+    testAddressContractDC,
+    productionAddressContractDC,
 } from "../../config/configBlockchain"
 
-// const MerkelAddress = isTestNet ? testnetMerkelAddress : productionMerkelAddress
+export const addressDoges = isTestNet ? testAddressContractDoges : productionAddressContractDoges
+export const addressDC = isTestNet ? testAddressContractDC : productionAddressContractDC
 
 type TypeExternalProvider = any
 type TypePropExternalProvider = TypeExternalProvider | null
 type TypeContractInterface = ContractInterface
 type TypeContract = Contract
 type TypeProvider = any
+
+
+// type MethodSelectOfReadConfig = { select: (value: any) => any }
+// : UseContractReadConfig | MethodSelectOfReadConfig
+export const generateContractDogesSetting = (methodName: string, additionalSettings?) => ({
+    addressOrName: addressDoges,
+    contractInterface: abiDoges,
+    functionName: methodName,
+    ...additionalSettings
+})
+
+export const generateContractDCSetting = (methodName: string, additionalSettings?) => ({
+    addressOrName: addressDC,
+    contractInterface: abiDC,
+    functionName: methodName,
+    ...additionalSettings
+})
 
 export type TypeWallet = {
     account: any;
@@ -61,26 +82,25 @@ const createSignerContract = (
     const signer = provider.getSigner()
     const contract = new ethers.Contract(address, interfaceContract, signer)
     const signTransactions = contract.connect(signer)
-    return { signer, contract, signTransactions, provider }
+    return {signer, contract, signTransactions, provider}
 }
 
-export const disconnectWallet = (wallet: TypeWallet) => {
-    localStorage.removeItem("connectorId")
-    localStorage.removeItem("user")
-    wallet.reset()
-}
 
-export const checkWallet = async (wallet: TypeWallet) => {
-    const getConnectorId: boolean | string = storage("connectorId")
-    if (getConnectorId === "injected" || getConnectorId === "bsc" || getConnectorId === "walletconnect") {
-        await wallet.connect(getConnectorId)
+// export const checkWallet = async (wallet: TypeWallet) => {
+//     const getConnectorId: boolean | string = storage("connectorId")
+//     if (getConnectorId === "injected" || getConnectorId === "bsc" || getConnectorId === "walletconnect") {
+//         await wallet.connect(getConnectorId)
+//
+//         await window.ethereum.request({
+//             method: 'wallet_switchEthereumChain',
+//             params: [{ chainId: `0x${chainId}` }], // chainId must be in hexadecimal numbers, 0x1 - ETH mainnet, 0x4 - Rinkeby testent
+//         })
+//         await wallet.connect(getConnectorId)
+//     } else {
+//         localStorage.removeItem("connectorId")
+//     }
+// }
 
-        await window.ethereum.request({
-            method: 'wallet_switchEthereumChain',
-            params: [{ chainId: `0x${chainId}` }], // chainId must be in hexadecimal numbers, 0x1 - ETH mainnet, 0x4 - Rinkeby testent
-        })
-        await wallet.connect(getConnectorId)
-    } else {
-        localStorage.removeItem("connectorId")
-    }
+export const isMintOpen = async () => {
+
 }
