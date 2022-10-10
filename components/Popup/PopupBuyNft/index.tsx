@@ -14,6 +14,7 @@ import {formatEther, toWei} from "../../../utils";
 import classNames from "classnames";
 import useRenderOnlyClient from "../../../hooks/useRenderOnlyClient";
 import {ethers} from "ethers";
+import {useWaitForTransaction} from 'wagmi'
 import web3 from "web3";
 
 const PopupBuyNft = () => {
@@ -27,6 +28,7 @@ const PopupBuyNft = () => {
         select: data => toWei(formatEther(data)),
         onSuccess: data => console.log('init availableTokensToMint', data)
     }))
+
     const {data: isApproved} = useContractRead(generateContractDCSetting('allowance', {
         args: [address, addressDoges],
         select: data => formatEther(data),
@@ -38,35 +40,27 @@ const PopupBuyNft = () => {
         onSuccess: data => console.log('Price', data)
     }))
 
-    const { config } = usePrepareContractWrite(generateContractDCSetting('approve', {
-        // args: [addressDoges, ethers.utils.parseEther(String(+availableTokensToMint * toWei(String(priceDC))))]
+    const {config: configApprove} = usePrepareContractWrite(generateContractDCSetting('approve', {
         args:
-            Boolean(availableTokensToMint) &&
-            Boolean(priceDC) &&
+            availableTokensToMint &&
+            priceDC &&
             [addressDoges, web3.utils.toWei(String(+availableTokensToMint * +priceDC))],
-        // enabled: Boolean(availableTokensToMint)
-        // enabled: false
     }))
 
-    const {write} = useContractWrite(config)
+    const {write, data: dataApprove} = useContractWrite(configApprove)
+    const {isSuccess: isSuccessApproved = false} = useWaitForTransaction({
+        hash: dataApprove?.hash,
+    })
 
-    useEffect(() => {
-        // console.log('web3.utils.toWei(String(+availableTokensToMint * +priceDC))', web3.utils.toWei(String(+availableTokensToMint * +priceDC)))
-        console.log('priceDC', +priceDC);
-        console.log('availableTokensToMint', availableTokensToMint);
-        console.log('aaaaa', +availableTokensToMint * +priceDC);
-        console.log('aaaaa', String(+availableTokensToMint * +priceDC));
-    }, [priceDC, availableTokensToMint])
-
-    const {config: config2} = usePrepareContractWrite(generateContractDogesSetting('mintNft', {
+    const {config: configMint} = usePrepareContractWrite(generateContractDogesSetting('mintNft', {
         args: [amount, true],
-        // enabled: (+isApproved >= +priceDC * +availableTokensToMint) || dateApprove
+        enabled: (+isApproved >= +priceDC * +availableTokensToMint) || dataApprove
     }))
-    const {write: write2, isSuccess: isSuccessMint} = useContractWrite(config2)
+    const {write: write2, data: dataSuccess} = useContractWrite(configMint)
 
-    // useEffect(() => {
-    //
-    // }, [dateApprove])
+    const {isSuccess: isSuccessMint = false} = useWaitForTransaction({
+        hash: dataSuccess?.hash,
+    })
 
     const handlerCounter = (value: number) => {
         const plannedValue = amount + value
@@ -92,9 +86,9 @@ const PopupBuyNft = () => {
 
         // write()
 
-        if (+isApproved >= +priceDC * +availableTokensToMint) {
+        if (isSuccessApproved || +isApproved >= +priceDC * +availableTokensToMint) {
             write2 && write2()
-        // }
+            // }
         } else {
             console.log('write', write)
             write && write()
@@ -117,11 +111,11 @@ const PopupBuyNft = () => {
                     {
                         isReadyRender &&
                         <Button onClick={handlerClickActionButton} className={classNames(styles.button, {
-                            [styles.disabled]: (+isApproved >= +priceDC * +availableTokensToMint && amount === 0) || amount > +availableTokensToMint
+                            [styles.disabled]: isSuccessApproved || (+isApproved >= +priceDC * +availableTokensToMint && amount === 0) || amount > +availableTokensToMint
                         })}>
                             <span className={styles.text}>
                                 {
-                                    +isApproved >= +priceDC * +availableTokensToMint
+                                    isSuccessApproved || +isApproved >= +priceDC * +availableTokensToMint
                                         ? 'mint'
                                         : 'approve $DC'
                                 }
