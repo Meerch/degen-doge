@@ -35,11 +35,11 @@ const PopupBuyNft = () => {
         onSuccess: data => console.log('Price', data)
     }))
 
-    const { config } = usePrepareContractWrite(generateContractDCSetting('approve', {
-        args: [addressDoges, ethers.utils.parseEther(String(+availableTokensToMint * +priceDC))]
-    }))
-
-    const {write} = useContractWrite(config)
+    // const { config } = usePrepareContractWrite(generateContractDCSetting('approve', {
+    //     args: [addressDoges, ethers.utils.parseEther(String(+availableTokensToMint * +priceDC))]
+    // }))
+    //
+    // const {write} = useContractWrite(config)
 
     const {config: config2} = usePrepareContractWrite(generateContractDogesSetting('mintNft', {
         args: [amount, true]
@@ -77,7 +77,7 @@ const PopupBuyNft = () => {
             console.log('res result', res);
         // }
         } else {
-            write()
+            // write()
         }
         // dispatch(changeCurrentPopup('success'))
     }
@@ -88,29 +88,29 @@ const PopupBuyNft = () => {
                 <span className={styles.title}>buy NFT with $DC</span>
                 {/*<span>Transition approve: {data}</span>*/}
 
-                {/*<div className={styles.buttons}>*/}
-                {/*    <div className={styles.counter}>*/}
-                {/*        <span onClick={() => handlerCounter(-1)} className={styles.minus}>-</span>*/}
-                {/*        <span className={styles.value}>{amount}</span>*/}
-                {/*        <span onClick={() => handlerCounter(1)} className={styles.plus}>+</span>*/}
-                {/*    </div>*/}
-                {/*    {*/}
-                {/*        isReadyRender &&*/}
-                {/*        <Button onClick={handlerClickActionButton} className={classNames(styles.button, {*/}
-                {/*            [styles.disabled]: amount === 0 || amount > +availableTokensToMint*/}
-                {/*        })}>*/}
-                {/*            <span className={styles.text}>*/}
-                {/*                {*/}
-                {/*                    +isApproved >= +priceDC * +availableTokensToMint*/}
-                {/*                        ? 'mint'*/}
-                {/*                        : 'approve $DC'*/}
-                {/*                }*/}
-                {/*            </span>*/}
-                {/*        </Button>*/}
-                {/*    }*/}
-                {/*</div>*/}
+                <div className={styles.buttons}>
+                    <div className={styles.counter}>
+                        <span onClick={() => handlerCounter(-1)} className={styles.minus}>-</span>
+                        <span className={styles.value}>{amount}</span>
+                        <span onClick={() => handlerCounter(1)} className={styles.plus}>+</span>
+                    </div>
+                    {
+                        isReadyRender &&
+                        <Button onClick={handlerClickActionButton} className={classNames(styles.button, {
+                            [styles.disabled]: amount === 0 || amount > +availableTokensToMint
+                        })}>
+                            <span className={styles.text}>
+                                {
+                                    +isApproved >= +priceDC * +availableTokensToMint
+                                        ? 'mint'
+                                        : 'approve $DC'
+                                }
+                            </span>
+                        </Button>
+                    }
+                </div>
 
-                {/*<span className={styles.available}>{+availableTokensToMint}/20 available</span>*/}
+                <span className={styles.available}>{+availableTokensToMint}/20 available</span>
             </div>
         </PopupLayout>
     );
