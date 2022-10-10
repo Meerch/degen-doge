@@ -31,10 +31,10 @@ export const calculateDiffTime = (start: Date, end: Date) => {
 }
 
 
-export const formatEther = (value: BigNumberish): string => {
-    return ethers.utils.formatEther(value)
+export const formatEther = (value1: BigNumberish): string => {
+    return ethers.utils.formatEther(value1)
 }
 
-export const toWei = (value: string): number => {
-    return +web3.utils.toWei(value, "ether")
+export const toWei = (value2: string): number => {
+    return +web3.utils.toWei(value2, "ether")
 }
