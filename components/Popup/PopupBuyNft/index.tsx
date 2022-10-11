@@ -16,17 +16,19 @@ import useRenderOnlyClient from "../../../hooks/useRenderOnlyClient";
 import {ethers} from "ethers";
 import {useWaitForTransaction} from 'wagmi'
 import web3 from "web3";
+import {Loader} from "../../Loader";
+import {ErrorButton} from "./StatesButton/ErrorButton";
+import LoadingButton from "./StatesButton/LoadingButton";
 
 const PopupBuyNft = () => {
     const {address} = useAccount()
     const dispatch = useDispatch()
-    const [amount, setAmount] = useState(0)
+    const [amount, setAmount] = useState(1)
     const {isReadyRender} = useRenderOnlyClient()
 
     const {data: availableTokensToMint} = useContractRead(generateContractDogesSetting('remainToMint', {
         args: address,
-        select: data => toWei(formatEther(data)),
-        onSuccess: data => console.log('init availableTokensToMint', data)
+        select: data => toWei(formatEther(data))
     }))
 
     const {data: balance} = useContractRead(generateContractDCSetting('balanceOf', {
@@ -36,43 +38,45 @@ const PopupBuyNft = () => {
 
     const {data: isApproved} = useContractRead(generateContractDCSetting('allowance', {
         args: [address, addressDoges],
-        select: data => formatEther(data),
-        onSuccess: data => console.log('approved amount', data)
+        select: data => formatEther(data)
     }))
 
     const {data: priceDC} = useContractRead(generateContractDogesSetting('getPriceInDC', {
-        select: data => data && formatEther(data),
-        onSuccess: data => console.log('Price', data)
+        select: data => data && formatEther(data)
     }))
 
     const {config: configApprove} = usePrepareContractWrite(generateContractDCSetting('approve', {
         args:
-            availableTokensToMint &&
-            priceDC &&
+            availableTokensToMint && priceDC &&
             [addressDoges, web3.utils.toWei(String(+availableTokensToMint * +priceDC))],
     }))
-
-    const {write, data: dataApprove} = useContractWrite(configApprove)
-    const {isSuccess: isSuccessApproved = false} = useWaitForTransaction({
+    const {write: writeApprove, data: dataApprove} = useContractWrite(configApprove)
+    const [isErrorApprove, setIsErrorApprove] = useState(false)
+    const {
+        isLoading: isLoadingApprove,
+        isError: isError1,
+        isSuccess: isSuccessApproved = false
+    } = useWaitForTransaction({
         hash: dataApprove?.hash,
+        onError: () => setIsErrorApprove(true)
     })
 
     const {config: configMint} = usePrepareContractWrite(generateContractDogesSetting('mintNft', {
         args: [amount, true],
         enabled: (+isApproved >= +priceDC * +availableTokensToMint) || dataApprove
     }))
-    const {write: write2, data: dataSuccess} = useContractWrite(configMint)
-
-    const {isSuccess: isSuccessMint = false} = useWaitForTransaction({
+    const {write: writeMint, data: dataSuccess} = useContractWrite(configMint)
+    const [isErrorMint, setIsErrorMint] = useState(false)
+    const {isLoading: isLoadingMint, isError, isSuccess: isSuccessMint = false} = useWaitForTransaction({
         hash: dataSuccess?.hash,
+        onError: () => setIsErrorMint(true)
     })
 
     const handlerCounter = (value: number) => {
         const plannedValue = amount + value
-        if (plannedValue < 0 || plannedValue > +availableTokensToMint) {
-            return
+        if (plannedValue > 0 && plannedValue <= +availableTokensToMint) {
+            setAmount(prev => prev + value)
         }
-        setAmount(prev => prev + value)
     }
 
     useEffect(() => {
@@ -82,24 +86,34 @@ const PopupBuyNft = () => {
     }, [isSuccessMint])
 
     const handlerClickActionButton = async () => {
-        console.log('isApproved', isApproved)
-        console.log('ethers.utils.parseEther(String(+availableTokensToMint * +priceDC))', ethers.utils.parseEther(String(+availableTokensToMint * +priceDC)))
-        console.log('priceDC', priceDC)
-        console.log('priceDC', priceDC)
-        console.log('priceDC * 20', +priceDC * +availableTokensToMint)
-        console.log('approve > price * 20', +isApproved <= +priceDC * +availableTokensToMint)
+        if (isLoadingMint || isLoadingApprove) {
+            return
+        }
 
-        // write()
+        if (isErrorApprove || isErrorMint) {
+            setIsErrorApprove(false)
+            setIsErrorMint(false)
+        }
 
         if (isSuccessApproved || +isApproved >= +priceDC * +availableTokensToMint) {
-            write2 && write2()
-            // }
+            writeMint && writeMint()
         } else {
-            console.log('write', write)
-            write && write()
+            writeApprove && writeApprove()
         }
-        // dispatch(changeCurrentPopup('success'))
     }
+
+    const checkIsDisableButton = () => {
+        if (isLoadingMint || isLoadingApprove) {
+            return false
+        }
+
+        return (!isErrorApprove && !isErrorMint) &&
+            (isSuccessApproved
+            || (+isApproved >= +priceDC * +availableTokensToMint && amount === 0)
+            || amount > +availableTokensToMint
+            || amount * +priceDC > +balance)
+    }
+
 
     return (
         <PopupLayout>
@@ -115,19 +129,32 @@ const PopupBuyNft = () => {
                     </div>
                     {
                         isReadyRender &&
-                        <Button onClick={handlerClickActionButton} className={classNames(styles.button, {
-                            [styles.disabled]: isSuccessApproved ||
-                                (+isApproved >= +priceDC * +availableTokensToMint && amount === 0)
-                            || amount > +availableTokensToMint
-                            || amount * +priceDC > +balance
-                        })}>
-                            <span className={styles.text}>
-                                {
-                                    isSuccessApproved || +isApproved >= +priceDC * +availableTokensToMint
-                                        ? 'mint'
-                                        : 'approve $DC'
-                                }
-                            </span>
+                        <Button
+                            onClick={handlerClickActionButton}
+                            className={classNames(styles.button, {
+                                [styles.disabled]: checkIsDisableButton(),
+                                [styles.loading]: isLoadingMint || isLoadingApprove,
+                                [styles.error]: isErrorMint || isErrorApprove
+                            })}
+                        >
+                            {
+                                !isLoadingMint && !isLoadingApprove && !isErrorApprove && !isErrorMint &&
+                                <span className={styles.text}>
+                                    {
+                                        isSuccessApproved || +isApproved >= +priceDC * +availableTokensToMint
+                                            ? 'click to buy'
+                                            : 'approve $DC'
+                                    }
+                                </span>
+                            }
+
+                            {
+                                (isLoadingMint || isLoadingApprove) && <LoadingButton />
+                            }
+
+                            {
+                                (isErrorApprove || isErrorMint) && <ErrorButton />
+                            }
                         </Button>
                     }
                 </div>

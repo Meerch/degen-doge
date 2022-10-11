@@ -1,6 +1,6 @@
 .popup {
   width: 529px;
-  height: 335px;
+  height: 590px;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -12,10 +12,14 @@
   font-size: 32px;
 }
 
+.doge {
+  margin-top: 10px;
+}
+
 .description {
   font-size: 32px;
   text-align: center;
-  margin-top: 15px;
+  margin-top: 10px;
   line-height: 45px;
 }
 

@@ -20,7 +20,6 @@ const Home: NextPage = () => {
 
     return (
         <div className='wrap'>
-            {/*<Plug/>*/}
             <Intro/>
             <InterlineLayer/>
             <Options/>

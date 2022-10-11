@@ -16,6 +16,8 @@ const PopupSuccess = () => {
         <PopupLayout className={styles.popup}>
             <span className={styles.title}>Success!!!</span>
 
+            <img className={styles.doge} src="/images/doge-success-mint.png" alt="doge"/>
+
             <div className={styles.description}>
                 You are the proud owner of the strange NFT on DOGECHAIN!
             </div>

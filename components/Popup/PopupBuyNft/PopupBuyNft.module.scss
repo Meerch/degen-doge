@@ -49,12 +49,29 @@
   }
 }
 
+
 .button {
   height: 100px;
   width: 220px;
   background-color: #B0D28E;
   display: flex;
   border: 4px solid #9C8060;
+
+  &.loading,
+  &.error {
+    justify-content: space-between;
+    flex-flow: row nowrap;
+    padding: 0;
+    align-items: center;
+  }
+
+  &.error {
+    background-color: #FF4F6F;
+
+    &:hover {
+      background-color: #FF8282;
+    }
+  }
 
   &.disabled {
     cursor: default;
