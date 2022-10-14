@@ -8,13 +8,19 @@ import {options} from "./constants";
 import SaleTimer from "../SaleTimer";
 import {useContractRead} from "wagmi";
 import {generateContractDogesSetting} from "../../blockchain/utils";
+import {BigNumberish} from "ethers";
+import {formatEther, toWei} from "../../utils";
 
 const Options = () => {
     const {data: isMintOpen = false} = useContractRead(generateContractDogesSetting('isMintOpen'))
+    const {data: timeStartMint} = useContractRead(generateContractDogesSetting('getSaleTime', {
+        select: (data: BigNumberish): number => toWei(formatEther(data)) * 1000,
+        onSuccess: data => console.log('available claim free nft', +data > +new Date())
+    }))
     const dispatch = useDispatch()
 
     const handlerClickOption = (event: React.MouseEvent<HTMLHyperlinkElementUtils>) => {
-        if (isMintOpen) {
+        if (+timeStartMint < +new Date() && isMintOpen) {
             event.preventDefault()
             dispatch(changeCurrentPopup('buy-nft'))
         }
@@ -77,9 +83,11 @@ const Options = () => {
                                     style={{backgroundColor: button.color}}
                                     className={classNames(
                                         styles.button,
-                                        index === 1 && styles.two,
-                                        options.length - 1 === index && styles.last,
-                                        options.length - 1 === index && !isMintOpen && styles.inactive
+                                        {
+                                            [styles.two]: index === 1,
+                                            [styles.last]: options.length - 1 === index,
+                                            [styles.inactive]: options.length - 1 === index && (!isMintOpen || +timeStartMint > +new Date())
+                                        }
                                     )}
                                 >
                                     <span className={styles.text}>{button.text}</span>

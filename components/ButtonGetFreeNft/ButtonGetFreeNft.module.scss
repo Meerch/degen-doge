@@ -1,0 +1,28 @@
+@import "styles/variables";
+
+.button {
+  background-color: #D7FFB8;
+  box-shadow: 7px 6px 0 0 #58473D;
+  width: 340px;
+  height: 57px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 205px auto 0;
+  transition: all .1s linear;
+  font-size: 22px;
+
+  @media (min-width: $media-screen-notebook) {
+    margin: 150px auto 0;
+  }
+
+  &:hover {
+    background-color: #B0D28E;
+    box-shadow: 8px 7px 0 0 #58473D;
+  }
+
+  &.inactive {
+    pointer-events: none;
+    filter: grayscale(100%);
+  }
+}

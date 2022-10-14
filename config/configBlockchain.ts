@@ -16,8 +16,8 @@ export const urlExplorer = isTestNet
     ? 'https://explorer-testnet.dogechain.dog/'
     : 'https://explorer.dogechain.dog'
 
-export const testAddressContractDoges = "0x7a676fAA309A94b5Ea24d90518146B30253b3753"
-export const productionAddressContractDoges = "0x7a676fAA309A94b5Ea24d90518146B30253b3753"
+export const testAddressContractDoges = "0x08296d5f0f3F1D240302E1A7FE3bead9ef51D17d"
+export const productionAddressContractDoges = "0x08296d5f0f3F1D240302E1A7FE3bead9ef51D17d"
 
 
 export const testAddressContractDC = "0x82854a49884528f454C9D2cbC29Fa84B4FD28d8d"

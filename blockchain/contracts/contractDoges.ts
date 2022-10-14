@@ -252,6 +252,16 @@ const abi = [{
 }, {
     "type": "function",
     "stateMutability": "view",
+    "outputs": [{"type": "bool", "name": "", "internalType": "bool"}, {
+        "type": "bool",
+        "name": "",
+        "internalType": "bool"
+    }],
+    "name": "getClaimStatus",
+    "inputs": [{"type": "address", "name": "user", "internalType": "address"}]
+}, {
+    "type": "function",
+    "stateMutability": "view",
     "outputs": [{"type": "uint256", "name": "", "internalType": "uint256"}],
     "name": "getPriceInDC",
     "inputs": []

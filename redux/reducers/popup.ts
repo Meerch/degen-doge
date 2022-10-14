@@ -1,4 +1,4 @@
-export type TypeCurrentPopup = null | 'connect-wallet' | 'buy-nft' | 'success'
+export type TypeCurrentPopup = null | 'connect-wallet' | 'buy-nft' | 'success' | 'get-free-nft'
 
 export type TypeInitialStatePopup = {
     currentPopup: TypeCurrentPopup

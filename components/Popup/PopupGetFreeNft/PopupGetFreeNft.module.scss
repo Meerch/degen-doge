@@ -1,0 +1,88 @@
+.popup {
+  width: 530px;
+  height: 335px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.title {
+  font-size: 32px;
+  margin: 35px auto 0;
+  width: 70%;
+  text-align: center;
+  line-height: 45px;
+}
+
+.button {
+  margin-top: 25px;
+  width: 220px;
+  height: 100px;
+  background-color: #B0D28E;
+  border: 4px solid #9C8060;
+  font-size: 32px;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: #C3FF87;
+  }
+
+  &:active {
+    background-color: #739650;
+  }
+
+
+  &.notAvailable {
+    background-color: #FFBEBE;
+
+    &:hover {
+      background-color: darken(#FFBEBE, 5);
+    }
+
+    &:active {
+      background-color: darken(#FFBEBE, 10);
+    }
+  }
+  
+  &.claimed {
+    background-color: #C99100;
+
+    &:hover {
+      background-color: lighten(#C99100, 5);
+    }
+
+    &:active {
+      background-color: lighten(#C99100, 10);
+    }
+
+  }
+
+
+  &.loading {
+    display: flex;
+    padding: 0;
+    background-color: #B0D28E;
+
+    &:hover {
+      background-color: #B0D28E;
+    }
+  }
+
+  &.error {
+    background-color: #FF4F6F;
+    display: flex;
+    padding: 0;
+    align-items: center;
+    justify-content: space-between;
+
+    &:hover {
+      background-color: #FF8282;
+    }
+  }
+}
+
+.available {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 20px;
+  margin-top: 35px;
+}
