@@ -4,7 +4,7 @@ import PopupLayout from "../PopupLayout";
 import Button from '../../UI/Button';
 import classNames from "classnames";
 import {useAccount, useContractRead, useContractWrite, usePrepareContractWrite, useWaitForTransaction} from "wagmi";
-import {generateContractDCSetting, generateContractDogesSetting} from "../../../blockchain/utils";
+import {generateContractDogesSetting} from "../../../blockchain/utils";
 import {changeCurrentPopup} from "../../../redux/actions/popup";
 import {useDispatch} from "react-redux";
 import LoadingButton from "../PopupBuyNft/StatesButton/LoadingButton";
@@ -30,7 +30,7 @@ const PopupGetFreeNft = () => {
         }
     }, [infoClaim])
 
-    const {config: configClaimNft} = usePrepareContractWrite(generateContractDCSetting('claimMyNft', {}))
+    const {config: configClaimNft} = usePrepareContractWrite(generateContractDogesSetting('claimMyNft', {}))
     const {write: writeClaimNft, data: dataClaimNft} = useContractWrite(configClaimNft)
     const {isLoading: isLoadingClaim, isSuccess: isSuccessClaim = false} = useWaitForTransaction({
         hash: dataClaimNft?.hash,
