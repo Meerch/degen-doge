@@ -1,15 +1,28 @@
+@import "styles/variables";
+
 .popup {
-  width: 529px;
-  height: 590px;
+  max-width: 426px;
+  width: 100vw;
+  height: 575px;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   //justify-content: center;
+
+  @media (min-width: $media-screen-notebook) {
+    width: 530px;
+    max-width: 530px;
+    height: 590px;
+  }
 }
 
 .title {
-  margin-top: 50px;
   font-size: 32px;
+  margin-top: 30px;
+
+  @media (min-width: $media-screen-notebook) {
+    margin-top: 50px;
+  }
 }
 
 .doge {
@@ -17,10 +30,16 @@
 }
 
 .description {
-  font-size: 32px;
   text-align: center;
   margin-top: 10px;
   line-height: 45px;
+  font-size: 18px;
+  width: 65%;
+
+  @media (min-width: $media-screen-notebook) {
+    font-size: 32px;
+    width: auto;
+  }
 }
 
 

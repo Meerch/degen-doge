@@ -1,10 +1,19 @@
+@import "styles/variables";
+
 .popup {
-  width: 529px;
-  height: 385px;
+  width: 100%;
+  max-width: 426px;
+  height: 395px;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   //justify-content: center;
+
+  @media (min-width: $media-screen-notebook) {
+    width: 529px;
+    max-width: 529px;
+    height: 385px;
+  }
 }
 
 .title {

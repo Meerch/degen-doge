@@ -21,12 +21,14 @@
 .featuresItems {
   display: flex;
   flex-flow: column nowrap;
-  width: 500px;
+  max-width: 500px;
+  width: 100%;
   margin: 0 auto;
 
   @media (min-width: $media-screen-notebook) {
     flex-flow: row nowrap;
     width: 100%;
+    max-width: 100%;
     justify-content: space-between;
     padding: 70px 100px;
   }
@@ -48,13 +50,17 @@
     margin-bottom: 0;
   }
 
+  &:nth-child(even) {
+    margin-left: -40px;
+
+    @media (min-width: $media-screen-notebook) {
+      margin-left: 0;
+    }
+  };
+
   &:nth-child(odd) {
     align-self: flex-end;
   }
-
-
-
-
 
   .image {
     width: 30%;
@@ -67,11 +73,15 @@
   }
 
   .name {
-    font-size: 30px;
+    font-size: 25px;
     text-shadow: 1px 0 1px #fff,
     0 1px 1px #fff,
     -1px 0 1px #fff,
     0 -1px 1px #fff;
     margin-top: 20px;
+
+    @media (min-width: $media-screen-notebook) {
+     font-size: 30px;
+    }
   }
 }

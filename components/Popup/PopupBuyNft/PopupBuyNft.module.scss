@@ -1,9 +1,18 @@
+@import "styles/variables";
+
 .popup {
-  width: 529px;
-  height: 335px;
+  max-width: 426px;
+  width: 100vw;
+  height: 469px;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+
+  @media (min-width: $media-screen-notebook) {
+    width: 529px;
+    max-width: 529px;
+    height: 335px;
+  }
 }
 
 
@@ -14,8 +23,13 @@
 
 .buttons {
   display: flex;
-  flex-flow: row nowrap;
-  margin-top: 50px;
+  margin-top: 35px;
+  flex-flow: column nowrap;
+
+  @media (min-width: $media-screen-notebook) {
+    margin-top: 50px;
+    flex-flow: row nowrap;
+  }
 }
 
 .counter {
@@ -30,6 +44,11 @@
   align-items: center;
   font-size: 32px;
   position: relative;
+  margin-bottom: 70px;
+
+  @media (min-width: $media-screen-notebook) {
+    margin-bottom: 0;
+  }
 
   &:after {
     content: 'enter amount';
@@ -48,7 +67,6 @@
     cursor: pointer;
   }
 }
-
 
 .button {
   height: 100px;
@@ -97,6 +115,11 @@
 
 .available {
   font-size: 20px;
-  margin-top: 50px;
   color: rgba(0, 0, 0, 0.5);
+  margin-top: 15px;
+
+  @media (min-width: $media-screen-notebook) {
+    margin-top: 50px;
+
+  }
 }

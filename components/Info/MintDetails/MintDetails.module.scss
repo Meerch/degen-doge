@@ -25,14 +25,19 @@
 
 .text {
   width: auto;
-  text-align: center;
   text-shadow: 1px 0 1px #fff,
   0 1px 1px #fff,
   -1px 0 1px #fff,
   0 -1px 1px #fff;
-  font-size: 40px;
   margin-bottom: 35px;
   position: relative;
+  margin-left: 10%;
+  font-size: 35px;
+
+  @media (min-width: $media-screen-notebook) {
+    text-align: center;
+    font-size: 40px;
+  }
 
   &.price {
     position: relative;

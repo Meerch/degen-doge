@@ -1,9 +1,17 @@
+@import "styles/variables";
+
 .popup {
-  width: 530px;
-  height: 335px;
+  max-width: 426px;
+  width: 100vw;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+
+  @media (min-width: $media-screen-notebook) {
+    width: 530px;
+    max-width: 530px;
+    height: 335px;
+  }
 }
 
 .title {
@@ -85,5 +93,11 @@
 .available {
   color: rgba(0, 0, 0, 0.5);
   font-size: 20px;
-  margin-top: 35px;
+  margin-top: 15px;
+  margin-bottom: 25px;
+
+  @media (min-width: $media-screen-notebook) {
+    margin-top: 35px;
+    margin-bottom: 0;
+  }
 }
