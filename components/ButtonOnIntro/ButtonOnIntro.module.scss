@@ -5,7 +5,7 @@
   margin: 120px auto 0;
 
   @media (min-width: $media-screen-notebook) {
-    margin: 45px 0;
+    margin: 45px 0 0;
   }
 
   .image {
@@ -13,6 +13,8 @@
     z-index: -1;
     top: -60px;
     right: 0;
+
+    display: none;
 
     @media (min-width: $media-screen-notebook) {
       top: 15px;
@@ -44,6 +46,6 @@
     border: 5px solid #FFB800;
     width: 343px;
     height: 75px;
-    margin: 75px 0 0;
+    margin: 0;
   }
 }

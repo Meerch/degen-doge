@@ -12,18 +12,17 @@ import {BigNumberish} from "ethers";
 import {formatEther, toWei} from "../../utils";
 
 const Options = () => {
-    const {data: isMintOpen = false} = useContractRead(generateContractDogesSetting('isMintOpen'))
-    const {data: timeStartMint} = useContractRead(generateContractDogesSetting('getSaleTime', {
-        select: (data: BigNumberish): number => toWei(formatEther(data)) * 1000,
-        onSuccess: data => console.log('available claim free nft', +data > +new Date())
-    }))
+    // const {data: isMintOpen = false} = useContractRead(generateContractDogesSetting('isMintOpen'))
+    // const {data: timeStartMint} = useContractRead(generateContractDogesSetting('getSaleTime', {
+    //     select: (data: BigNumberish): number => toWei(formatEther(data)) * 1000,
+    //     onSuccess: data => console.log('available claim free nft', +data > +new Date())
+    // }))
     const dispatch = useDispatch()
-
+    //
     const handlerClickOption = (event: React.MouseEvent<HTMLHyperlinkElementUtils>) => {
-        if (+timeStartMint < +new Date() && isMintOpen) {
-            event.preventDefault()
-            dispatch(changeCurrentPopup('buy-nft'))
-        }
+        event.preventDefault()
+        dispatch(changeCurrentPopup('buy-nft'))
+
     }
 
     return (
@@ -86,7 +85,7 @@ const Options = () => {
                                         {
                                             [styles.two]: index === 1,
                                             [styles.last]: options.length - 1 === index,
-                                            [styles.inactive]: options.length - 1 === index && (!isMintOpen || +timeStartMint > +new Date())
+                                            [styles.inactive]: options.length - 1 === index
                                         }
                                     )}
                                 >

@@ -39,6 +39,16 @@
       border: none;
       width: 400px;
       height: 400px;
+      position: relative;
+
+      &:after {
+        position: absolute;
+        content: 'mint soon';
+        font-size: 32px;
+        bottom: 15px;
+        right: 50px;
+        color: black;
+      }
     }
 
     img {
@@ -47,13 +57,16 @@
 
       @media (min-width: $media-screen-notebook) {
         height: auto;
+
+
+
       }
 
     }
 
     .timer {
       position: absolute;
-      bottom: -40px;
+      bottom: -60px;
       right: 0;
     }
   }
@@ -64,6 +77,7 @@
     position: absolute;
     left: 0;
     top: 0;
+    text-align: right;
     line-height: 120px;
     font-weight: 300;
     text-shadow: 4px 0 4px #fff,
@@ -78,9 +92,10 @@
       0 -4px 4px #fff,
       8px 8px 15px #A86F00;
       font-size: 190px;
-      line-height: 150px;
+      line-height: 140px;
       letter-spacing: 13px;
-      left: 40px;
+      //left: 40px;
+      right: -70px;
       top: 30px;
     }
   }
@@ -105,7 +120,7 @@
     width: 340px;
     line-height: 45px;
     //-webkit-text-stroke: 0.3px #fff;
-    text-align: center;
+    text-align: right;
 
     text-shadow: 1px 0 1px #fff,
     0 1px 1px #fff,
@@ -123,10 +138,12 @@
     max-width: 422px;
     width: 100%;
     height: auto;
-    margin: 35px auto 0;
+    margin: 35px 100px 0 auto;
 
     @media (min-width: $media-screen-notebook) {
-      margin-top: 45px;
+      margin-top: 50px;
+      width: 110px;
+      height: auto;
     }
   }
 }

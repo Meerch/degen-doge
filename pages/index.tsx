@@ -34,18 +34,18 @@ const Home: NextPage = () => {
                 currentPopup === 'connect-wallet' &&
                 <PopupConnectWallet />
             }
-            {
-                currentPopup === 'buy-nft' &&
-                <PopupBuyNft />
-            }
-            {
-                currentPopup === 'success' &&
-                <PopupSuccess />
-            }
-            {
-                currentPopup === 'get-free-nft' &&
-                <PopupGetFreeNft />
-            }
+            {/*{*/}
+            {/*    currentPopup === 'buy-nft' &&*/}
+            {/*    <PopupBuyNft />*/}
+            {/*}*/}
+            {/*{*/}
+            {/*    currentPopup === 'success' &&*/}
+            {/*    <PopupSuccess />*/}
+            {/*}*/}
+            {/*{*/}
+            {/*    currentPopup === 'get-free-nft' &&*/}
+            {/*    <PopupGetFreeNft />*/}
+            {/*}*/}
         </div>
     )
 }

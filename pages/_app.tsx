@@ -5,14 +5,50 @@ import {Provider} from 'react-redux'
 import store from '../redux/store'
 import 'normalize.css'
 import '../styles/globals.scss'
-import {WagmiConfig} from 'wagmi'
-import {client} from '../config/configWagmi'
 
 const makeStore = () => store
 const wrapper = createWrapper(makeStore)
 
+import {
+    HippoExtensionWalletAdapter,
+    MartianWalletAdapter,
+    AptosWalletAdapter,
+    FewchaWalletAdapter,
+    WalletProvider,
+    PontemWalletAdapter,
+    SpikaWalletAdapter,
+    FletchWalletAdapter,
+    AptosSnapAdapter,
+    NightlyWalletAdapter,
+    BitkeepWalletAdapter,
+    TokenPocketWalletAdapter,
+    BloctoWalletAdapter,
+    WalletAdapterNetwork,
+    Coin98WalletAdapter
+} from '@manahippo/aptos-wallet-adapter';
+import {useMemo} from "react";
+
 const App = ({Component, ...rest}: AppProps) => {
     const {store, props} = wrapper.useWrappedStore(rest)
+    const wallets = useMemo(
+        () => [
+            // new HippoWalletAdapter(),
+            // new HippoExtensionWalletAdapter(),
+            new MartianWalletAdapter(),
+            // new AptosWalletAdapter(),
+            // new FewchaWalletAdapter(),
+            new PontemWalletAdapter(),
+            // new SpikaWalletAdapter(),
+            // new FletchWalletAdapter(),
+            // new AptosSnapAdapter(),
+            // new NightlyWalletAdapter(),
+            // new BitkeepWalletAdapter(),
+            // new TokenPocketWalletAdapter(),
+            // new BloctoWalletAdapter({ network:WalletAdapterNetwork.Testnet }),
+            // new Coin98WalletAdapter()
+        ],
+        []
+    );
 
     return <>
         <Head>
@@ -24,11 +60,15 @@ const App = ({Component, ...rest}: AppProps) => {
 
             <title>Degen Doge</title>
         </Head>
-        <WagmiConfig client={client}>
-            <Provider store={store}>
-                <Component {...props.pageProps} />
-            </Provider>
-        </WagmiConfig>
+        <Provider store={store}>
+            <WalletProvider
+                wallets={wallets}
+                onError={(error: Error) => {
+                    console.log('wallet errors: ', error);
+                }}>
+            <Component {...props.pageProps} />
+            </WalletProvider>
+        </Provider>
     </>
 }
 

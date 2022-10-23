@@ -7,30 +7,34 @@ import {changeCurrentPopup} from "../../redux/actions/popup";
 import useRenderOnlyClient from "../../hooks/useRenderOnlyClient";
 import {BigNumberish} from "ethers";
 import {formatEther, toWei} from "../../utils";
+import { useWallet } from '@manahippo/aptos-wallet-adapter';
 
 const ButtonOnIntro = () => {
-    const {data: isMintOpen} = useContractRead(generateContractDogesSetting('isMintOpen', {
-        onSuccess: data => console.log('isMintOpen', data)
-    }))
-    const {data: timeStartMint} = useContractRead(generateContractDogesSetting('getSaleTime', {
-        select: (data: BigNumberish): number => toWei(formatEther(data)) * 1000,
-        onSuccess: data => console.log('available claim free nft', +data > +new Date())
-    }))
-    const {isReadyRender} = useRenderOnlyClient()
+    // const {data: isMintOpen} = useContractRead(generateContractDogesSetting('isMintOpen', {
+    //     onSuccess: data => console.log('isMintOpen', data)
+    // }))
+    // const {data: timeStartMint} = useContractRead(generateContractDogesSetting('getSaleTime', {
+    //     select: (data: BigNumberish): number => toWei(formatEther(data)) * 1000,
+    //     onSuccess: data => console.log('available claim free nft', +data > +new Date())
+    // }))
+    // const {isReadyRender} = useRenderOnlyClient()
     const dispatch = useDispatch()
-    const {isConnected} = useAccount()
-
+    const {connected} = useWallet()
+    // const {isConnected} = useAccount()
+    //
     const handlerClickButton = (event: React.MouseEvent<HTMLHyperlinkElementUtils>) => {
-        if (isMintOpen && !isConnected) {
-            event.preventDefault()
-            dispatch(changeCurrentPopup('connect-wallet'))
-            return
-        }
+        event.preventDefault()
 
-        if (isMintOpen && +timeStartMint < +new Date()) {
-            event.preventDefault()
+        if (!connected) {
+            dispatch(changeCurrentPopup('connect-wallet'))
+        } else {
             dispatch(changeCurrentPopup('buy-nft'))
         }
+
+        // if (isMintOpen && +timeStartMint < +new Date()) {
+        //     event.preventDefault()
+        //
+        // }
     }
 
     return (
@@ -44,9 +48,9 @@ const ButtonOnIntro = () => {
                 className={styles.button}
             >
                 {
-                    isReadyRender && isMintOpen && +timeStartMint < +new Date()
-                        ? 'MINT NFT NOW!'
-                        : 'join community'
+                    connected
+                        ? 'MINT IT'
+                        : 'connect wallet'
                 }
             </a>
         </div>

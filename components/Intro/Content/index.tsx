@@ -17,7 +17,7 @@ const Content = () => {
                 </div>
 
                 <div className={styles.text}>
-                    degen
+                    APTOD
                     <br/>o
                     <br/>g
                     <br/>e
@@ -26,11 +26,11 @@ const Content = () => {
 
             <div className={styles.info}>
                 <div className={styles.description}>
-                    NFT representation of your trading expirience on
+                    NFT representation of your FOMO expirience on
                 </div>
 
                 <img
-                    src="/images/dogechain.png"
+                    src="/images/aptos.png"
                     alt="dogechain"
                     className={styles.dogechain}
                 />

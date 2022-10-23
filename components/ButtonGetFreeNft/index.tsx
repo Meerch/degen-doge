@@ -10,32 +10,32 @@ import {formatEther, toWei} from "../../utils";
 import classNames from "classnames";
 
 const ButtonGetFreeNft = () => {
-    const {data: isMintOpen} = useContractRead(generateContractDogesSetting('isMintOpen', {
-        onSuccess: data => console.log('isMintOpen', data)
-    }))
-    const {data: timeStartMint} = useContractRead(generateContractDogesSetting('getSaleTime', {
-        select: (data: BigNumberish): number => toWei(formatEther(data)) * 1000,
-        onSuccess: data => console.log('available claim free nft', +data > +new Date())
-    }))
-    const dispatch = useDispatch()
-    const {isConnected} = useAccount()
-
-    const handlerClickButton = () => {
-        if (!isConnected) {
-            dispatch(changeCurrentPopup('connect-wallet'))
-            return
-        }
-
-        if (+timeStartMint < +new Date() && isMintOpen) {
-            dispatch(changeCurrentPopup('get-free-nft'))
-        }
-    }
+    // const {data: isMintOpen} = useContractRead(generateContractDogesSetting('isMintOpen', {
+    //     onSuccess: data => console.log('isMintOpen', data)
+    // }))
+    // const {data: timeStartMint} = useContractRead(generateContractDogesSetting('getSaleTime', {
+    //     select: (data: BigNumberish): number => toWei(formatEther(data)) * 1000,
+    //     onSuccess: data => console.log('available claim free nft', +data > +new Date())
+    // }))
+    // const dispatch = useDispatch()
+    // const {isConnected} = useAccount()
+    //
+    // const handlerClickButton = () => {
+    //     if (!isConnected) {
+    //         dispatch(changeCurrentPopup('connect-wallet'))
+    //         return
+    //     }
+    //
+    //     if (+timeStartMint < +new Date() && isMintOpen) {
+    //         dispatch(changeCurrentPopup('get-free-nft'))
+    //     }
+    // }
 
     return (
         <Button
-            onClick={handlerClickButton}
+            // onClick={handlerClickButton}
             className={classNames(styles.button, {
-                [styles.inactive]: +timeStartMint > +new Date() || !isMintOpen
+                // [styles.inactive]: +timeStartMint > +new Date() || !isMintOpen
             })}
         >
             check eglibility for free NFT
