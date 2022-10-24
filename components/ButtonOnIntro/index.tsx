@@ -33,6 +33,8 @@ const ButtonOnIntro = () => {
                         : 'connect wallet'
                 }
             </a>
+
+            <span className={styles.amountMinted}>0/5555 minted</span>
         </div>
     );
 };

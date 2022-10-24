@@ -1,36 +1,50 @@
 @import "styles/variables";
 
 .wrapperButton {
-  position: relative;
-  margin: 45px auto 0;
+    position: relative;
+    margin: 45px auto 0;
 
-  @media (min-width: $media-screen-notebook) {
-    margin: 50px auto 0;
-  }
+    @media (min-width: $media-screen-notebook) {
+        margin: 50px auto 0;
+    }
 }
 
 .button {
-  width: 320px;
-  height: 57px;
-  font-size: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #FF5C5C;
-  border: 5px solid #FFB800;
+    width: 320px;
+    height: 57px;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FF5C5C;
+    border: 5px solid #FFB800;
 
-  &:hover {
-    background-color: #FF8282;
-  }
+    &:hover {
+        background-color: #FF8282;
+    }
 
-  &:active,
-  &.active {
-    background-color: #FF0505;
-  }
+    &:active,
+    &.active {
+        background-color: #FF0505;
+    }
 
-  @media (min-width: $media-screen-notebook) {
-    width: 343px;
-    height: 75px;
-    margin: 0;
-  }
+    @media (min-width: $media-screen-notebook) {
+        width: 343px;
+        height: 75px;
+        margin: 0;
+    }
+}
+
+.amountMinted {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -70%;
+    font-size: 32px;
+    white-space: nowrap;
+    display: none;
+
+    @media (min-width: $media-screen-notebook) {
+        display: inline;
+    }
 }

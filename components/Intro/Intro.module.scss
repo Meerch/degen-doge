@@ -4,6 +4,10 @@
   width: 100%;
   height: auto;
   position: relative;
+
+  @media (min-width: $media-screen-notebook) {
+    padding-bottom: 100px;
+  }
 }
 
 
