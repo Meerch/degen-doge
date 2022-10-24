@@ -4,7 +4,7 @@ import {useAccount, useContractRead} from "wagmi";
 import {useDispatch} from "react-redux";
 import {changeCurrentPopup} from "../../redux/actions/popup";
 import Button from "../UI/Button";
-import {generateContractDogesSetting} from "../../blockchain/utils";
+// import {generateContractDogesSetting} from "../../blockchain/utils";
 import {BigNumberish} from "ethers";
 import {formatEther, toWei} from "../../utils";
 import classNames from "classnames";
