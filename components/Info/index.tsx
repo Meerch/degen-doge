@@ -5,11 +5,13 @@ import KeyFeatures from "./KeyFeatures";
 import MintDetails from "./MintDetails";
 import classNames from "classnames";
 
+type TypeTabs = keyof typeof tabs
+
 const tabs = {
     'key-features': <KeyFeatures/>,
     'mint-details': <MintDetails/>,
 }
-type TypeTabs = keyof typeof tabs
+
 const Info = () => {
     const [selectedTab, setSelectedTab] = useState<TypeTabs>('key-features')
 

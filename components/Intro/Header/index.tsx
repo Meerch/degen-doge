@@ -15,7 +15,7 @@ const Header = () => {
                 />
 
                 <span className={styles.text}>
-                    degen <br/> doge
+                    apto <br/> doge
                 </span>
             </div>
 

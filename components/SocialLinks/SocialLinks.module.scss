@@ -7,7 +7,7 @@
   //justify-content: space-between;
   justify-content: center;
   align-items: center;
-  margin: 50px auto 0;
+  margin: 10px auto 0;
 
 
   @media (min-width: $media-screen-notebook) {
@@ -15,7 +15,7 @@
   }
 
   .item {
-    font-size: 32px;
+    font-size: 25px;
     transition: text-shadow .1s linear;
 
     &:hover {

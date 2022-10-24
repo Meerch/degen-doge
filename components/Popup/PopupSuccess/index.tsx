@@ -19,7 +19,7 @@ const PopupSuccess = () => {
             <img className={styles.doge} src="/images/doge-success-mint.png" alt="doge"/>
 
             <div className={styles.description}>
-                You are the proud owner of the strange NFT on DOGECHAIN!
+                You are the proud owner of the strange NFT on APTOS!
             </div>
 
             <Button onClick={handlerClick} className={styles.button}>

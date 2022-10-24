@@ -4,21 +4,11 @@ import Button from "../UI/Button";
 import classNames from "classnames";
 import {useDispatch} from "react-redux";
 import {changeCurrentPopup} from "../../redux/actions/popup";
-import {options} from "./constants";
 import SaleTimer from "../SaleTimer";
-import {useContractRead} from "wagmi";
-import {generateContractDogesSetting} from "../../blockchain/utils";
-import {BigNumberish} from "ethers";
-import {formatEther, toWei} from "../../utils";
 
 const Options = () => {
-    // const {data: isMintOpen = false} = useContractRead(generateContractDogesSetting('isMintOpen'))
-    // const {data: timeStartMint} = useContractRead(generateContractDogesSetting('getSaleTime', {
-    //     select: (data: BigNumberish): number => toWei(formatEther(data)) * 1000,
-    //     onSuccess: data => console.log('available claim free nft', +data > +new Date())
-    // }))
     const dispatch = useDispatch()
-    //
+
     const handlerClickOption = (event: React.MouseEvent<HTMLHyperlinkElementUtils>) => {
         event.preventDefault()
         dispatch(changeCurrentPopup('buy-nft'))
@@ -28,82 +18,50 @@ const Options = () => {
     return (
         <div className={styles.options}>
             <span className={styles.title}>
-                How to get my <span className={styles.titleMark}>first</span> NFT on DogeChain?
+                How to get my first <span className={styles.mark}>degen</span> NFT on APTOS?
             </span>
 
             <div className={styles.optionsItems}>
-                {
-                    options.map(({image, name, description, button, info}, index) => (
-                        <div key={description} className={styles.optionsItem}>
-                            <div
-                                className={classNames(
-                                    styles.imageWrapper,
-                                    options.length - 1 === index && styles.last
-                                )}>
-                                <img
-                                    className={styles.image}
-                                    src={image}
-                                    alt="Image doge"
-                                />
-                            </div>
-                            <span
-                                className={classNames(
-                                    styles.name,
-                                    options.length - 1 === index && styles.yellow
-                                )}
-                            >
-                                {name}
-                            </span>
-                            <div
-                                className={classNames(
-                                    styles.description,
-                                    index === 1 && styles.second
-                                )}>
-                                {description}
-                            </div>
-                            <div
-                                className={classNames(
-                                    styles.info,
-                                    options.length - 1 === index && styles.best
-                                )}
-                            >
-                                {
-                                    info.map(({text, value}) => `${value} ${text}`).join(' / ')
-                                }
-                            </div>
+                <div className={styles.optionsItem}>
+                    <div className={styles.imageWrapper}>
+                        <img
+                            className={styles.image}
+                            src='/images/options/option-1.jpg'
+                            alt="Image doge"
+                        />
+                    </div>
+                    <span className={styles.name}>option 1</span>
+                    <div className={styles.description}>get NFT instantly through our strange website</div>
 
-                            <a
-                                onClick={(event) => !button.href && handlerClickOption(event)}
-                                href={button.href}
-                                target="_blank"
-                                rel='noreferrer'
-                            >
-                                <Button
-                                    style={{backgroundColor: button.color}}
-                                    className={classNames(
-                                        styles.button,
-                                        {
-                                            [styles.two]: index === 1,
-                                            [styles.last]: options.length - 1 === index,
-                                            [styles.inactive]: options.length - 1 === index
-                                        }
-                                    )}
-                                >
-                                    <span className={styles.text}>{button.text}</span>
-                                    {
-                                        index === 1 &&
-                                        <img className={styles.doge} src='/images/doge.png' alt="Image doge"/>
-                                    }
+                    <Button
+                        className={styles.button}
+                    >
+                        <span className={styles.text}>buy with $APT</span>
+                    </Button>
+                </div>
 
-                                    {
-                                        index === 2 &&
-                                        <SaleTimer className={styles.timer}/>
-                                    }
-                                </Button>
-                            </a>
-                        </div>
-                    ))
-                }
+                <div className={styles.optionsItem}>
+                    <div className={styles.imageWrapper}>
+                        <img
+                            className={styles.image}
+                            src='/images/options/option-1.jpg'
+                            alt="Image doge"
+                        />
+                    </div>
+                    <span className={styles.name}>option 1</span>
+                    <div className={styles.description}>get NFT through available NFT marketplaces</div>
+
+                    <Button
+                        className={classNames(
+                            styles.button,
+                            styles.red
+                        )}
+                    >
+                        <span className={styles.text}>coming soon</span>
+                        <SaleTimer className={styles.timer}/>
+                    </Button>
+                </div>
+
             </div>
         </div>
     )

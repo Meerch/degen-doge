@@ -2,12 +2,13 @@ import React from 'react'
 import styles from './Content.module.scss'
 import SaleTimer from "../../SaleTimer";
 import ButtonOnIntro from "../../ButtonOnIntro";
+import classNames from 'classnames';
 
 const Content = () => {
     return (
         <div className={styles.content}>
             <div className={styles.poster}>
-                <div className={styles.image}>
+                <div className={classNames(styles.image, styles.mintSoon)}>
                     <img
                         src="/images/intro.gif"
                         alt="Doge"
@@ -30,9 +31,9 @@ const Content = () => {
                 </div>
 
                 <img
-                    src="/images/aptos.png"
-                    alt="dogechain"
-                    className={styles.dogechain}
+                    src="/images/aptos2.png"
+                    alt="aptos"
+                    className={styles.aptos}
                 />
 
                 <ButtonOnIntro />

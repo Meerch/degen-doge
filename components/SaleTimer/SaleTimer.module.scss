@@ -1,3 +1,9 @@
+@import "styles/variables";
+
 .timer {
-  font-size: 32px;
+    font-size: 22px;
+
+    @media (min-width: $media-screen-notebook) {
+        font-size: 32px;
+    }
 }

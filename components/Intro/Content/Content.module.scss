@@ -1,149 +1,161 @@
 @import "/styles/variables";
+@import "/styles/mixins";
 
 .content {
-  //margin: 80px 35px 0;
-  margin: 80px auto 0;
-  display: flex;
-  justify-content: center;
-  flex-flow: column nowrap;
+    //margin: 80px 35px 0;
+    margin: 120px auto 0;
+    display: flex;
+    justify-content: center;
+    flex-flow: column nowrap;
 
-  @media (min-width: $media-screen-notebook) {
-    flex-flow: row nowrap;
-    margin: 80px auto 0;
-    width: 1000px;
-    //width: 70%;
-    justify-content: space-between;
-  }
+    @media (min-width: $media-screen-notebook) {
+        flex-flow: row nowrap;
+        margin: 200px auto 0;
+        width: 1000px;
+        //width: 70%;
+        justify-content: space-between;
+    }
 }
 
 .poster {
-  position: relative;
-  width: auto;
-  display: flex;
-  margin: 0 auto;
-
-
-  .image {
-    width: 265px;
-    height: auto;
-    margin-left: 90px;
-    margin-top: 140px;
-    border: 5px solid #000;
     position: relative;
+    width: auto;
+    display: flex;
+    margin: 0 auto;
+    transform: translateX(-15px);
 
     @media (min-width: $media-screen-notebook) {
-      background:  linear-gradient(130deg, #ffb800 0%, rgba(0, 0, 0, 0.5) 63%, #ffb800 68%);
-      border-radius: 0;
-      padding: 10px;
-      box-sizing: content-box;
-      border: none;
-      width: 400px;
-      height: 400px;
-      position: relative;
+        transform: none;
+    }
 
-      &:after {
+
+    .image {
+        width: 233px;
+        height: 257px;
+        //margin-left: 90px;
+        //margin-top: 140px;
+        border: 5px solid #000;
+        position: relative;
+
+        &.mintSoon:after {
+            position: absolute;
+            content: 'mint soon';
+            font-size: 22px;
+            color: black;
+            bottom: 4px;
+            right: 27px;
+
+            @media (min-width: $media-screen-notebook) {
+                font-size: 32px;
+                bottom: 15px;
+                right: 50px;
+            }
+        }
+
+        @media (min-width: $media-screen-notebook) {
+            background: linear-gradient(130deg, #ffb800 0%, rgba(0, 0, 0, 0.5) 63%, #ffb800 68%);
+            border-radius: 0;
+            padding: 10px;
+            border: none;
+            box-sizing: content-box;
+            width: 400px;
+            height: 400px;
+            position: relative;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+
+            @media (min-width: $media-screen-notebook) {
+                height: auto;
+            }
+        }
+
+        .timer {
+            position: absolute;
+            bottom: -35px;
+            right: 27px;
+
+            @media (min-width: $media-screen-notebook) {
+                bottom: -75px;
+                right: 12px;
+            }
+        }
+    }
+
+    .text {
+        $size: 6px;
+        $color: #fff;
+
+        font-size: 110px;
+        text-transform: uppercase;
         position: absolute;
-        content: 'mint soon';
-        font-size: 32px;
-        bottom: 15px;
-        right: 50px;
-        color: black;
-      }
+        left: 0;
+        top: -50px;
+        text-align: right;
+        line-height: 85px;
+        font-weight: 300;
+        letter-spacing: 5px;
+        text-shadow: -#{$size} -#{$size} 0 $color,
+        0        -#{$size} 0 $color,
+        #{$size} -#{$size} 0 $color,
+        #{$size}  0 0 $color,
+        #{$size}  #{$size} 0 $color,
+        0         #{$size} 0 $color,
+        -#{$size}  #{$size} 0 $color,
+        -#{$size} 0 0 $color,
+        15px 15px 15px #A86F00;
+
+        @media (min-width: $media-screen-notebook) {
+            font-size: 190px;
+            line-height: 140px;
+            letter-spacing: 13px;
+            //left: 40px;
+            right: -70px;
+            top: -100px;
+        }
     }
-
-    img {
-      width: 100%;
-      height: 100%;
-
-      @media (min-width: $media-screen-notebook) {
-        height: auto;
-
-
-
-      }
-
-    }
-
-    .timer {
-      position: absolute;
-      bottom: -60px;
-      right: 0;
-    }
-  }
-
-  .text {
-    font-size: 160px;
-    text-transform: uppercase;
-    position: absolute;
-    left: 0;
-    top: 0;
-    text-align: right;
-    line-height: 120px;
-    font-weight: 300;
-    text-shadow: 4px 0 4px #fff,
-    0 4px 4px #fff,
-    -4px 0 4px #fff,
-    0 -4px 4px #fff;
-
-    @media (min-width: $media-screen-notebook) {
-      text-shadow: 4px 0 4px #fff,
-      0 4px 4px #fff,
-      -4px 0 4px #fff,
-      0 -4px 4px #fff,
-      8px 8px 15px #A86F00;
-      font-size: 190px;
-      line-height: 140px;
-      letter-spacing: 13px;
-      //left: 40px;
-      right: -70px;
-      top: 30px;
-    }
-  }
 }
 
 .info {
-  margin: 130px auto 0;
-  width: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-
-  @media (min-width: $media-screen-notebook) {
-    width: auto;
-    margin-left: 70px;
-    align-items: flex-end;
-  }
-
-  .description {
-    margin: 0 auto;
-    font-size: 30px;
-    width: 340px;
-    line-height: 45px;
-    //-webkit-text-stroke: 0.3px #fff;
-    text-align: right;
-
-    text-shadow: 1px 0 1px #fff,
-    0 1px 1px #fff,
-    -1px 0 1px #fff,
-    0 -1px 1px #fff;
-
-    @media (min-width: $media-screen-notebook) {
-      font-size: 47px;
-      text-align: right;
-      width: auto;
-    }
-  }
-
-  .dogechain {
-    max-width: 422px;
+    margin: 70px auto 0;
     width: 100%;
-    height: auto;
-    margin: 35px 100px 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
 
     @media (min-width: $media-screen-notebook) {
-      margin-top: 50px;
-      width: 110px;
-      height: auto;
+        width: auto;
+        margin: 0 0 0 160px;
+        align-items: flex-end;
     }
-  }
+
+    .description {
+        margin: 0 auto;
+        font-size: 47px;
+        width: 340px;
+        line-height: 45px;
+        text-align: center;
+        @include stroke(#fff, 1px);
+
+        @media (min-width: $media-screen-notebook) {
+            font-size: 47px;
+            width: auto;
+        }
+    }
+
+    .aptos {
+        max-width: 422px;
+        width: 110px;
+        height: auto;
+        margin: 35px auto 0;
+        //box-shadow: 0 5px 13px rgba(0, 0, 0, 0.57);
+
+        @media (min-width: $media-screen-notebook) {
+            margin: 40px auto 0;
+            width: 110px;
+            height: auto;
+        }
+    }
 }

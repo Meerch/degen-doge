@@ -2,24 +2,10 @@
 
 .wrapperButton {
   position: relative;
-  margin: 120px auto 0;
+  margin: 45px auto 0;
 
   @media (min-width: $media-screen-notebook) {
-    margin: 45px 0 0;
-  }
-
-  .image {
-    position: absolute;
-    z-index: -1;
-    top: -60px;
-    right: 0;
-
-    display: none;
-
-    @media (min-width: $media-screen-notebook) {
-      top: 15px;
-      right: 15px;
-    }
+    margin: 50px auto 0;
   }
 }
 
@@ -27,10 +13,11 @@
   width: 320px;
   height: 57px;
   font-size: 32px;
-  background-color: #A88C7D;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #FF5C5C;
+  border: 5px solid #FFB800;
 
   &:hover {
     background-color: #FF8282;
@@ -42,8 +29,6 @@
   }
 
   @media (min-width: $media-screen-notebook) {
-    background-color: #FF5C5C;
-    border: 5px solid #FFB800;
     width: 343px;
     height: 75px;
     margin: 0;

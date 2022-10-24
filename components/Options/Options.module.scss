@@ -1,101 +1,90 @@
 @import '/styles/variables';
+@import '/styles/mixins';
 
 .options {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  margin-top: 140px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin-top: 30px;
 }
 
 .title {
-  text-align: center;
-  font-size: 45px;
-  line-height: 93px;
-  width: 80%;
-  margin: 0 auto;
+    text-align: center;
+    font-size: 45px;
+    line-height: 93px;
+    width: 80%;
+    margin: 0 auto;
 
-  @media (min-width: $media-screen-notebook) {
-    text-shadow: 4px 0 4px #fff,
-    0 4px 4px #fff,
-    -4px 0 4px #fff,
-    0 -4px 4px #fff;
-    line-height: 103px;
-    font-size: 65px;
-    width: 1000px;
-  }
+    @media (min-width: $media-screen-notebook) {
+        @include stroke(rgba(255, 255, 255, 0.5), 4px);
+        line-height: 103px;
+        font-size: 65px;
+        width: 1000px;
 
-  .titleMark {
-    position: relative;
-
-    &:before {
-      content: 'and the last, lol';
-      position: absolute;
-      bottom: -85%;
-      letter-spacing: -0.5px;
-      left: 50%;
-      height: auto;
-      transform: translateX(-50%);
-      font-size: 24px;
-      text-shadow: none;
-      white-space: nowrap;
-      display: none;
-
-      @media (min-width: $media-screen-notebook) {
-        display: inline;
-      }
+        .mark {
+            color: #C82F2F;
+        }
     }
-  }
 }
 
 .optionsItems {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  margin-top: 105px;
-
-  @media (min-width: $media-screen-notebook) {
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    width: 1100px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
     margin: 90px auto 0;
-    align-items: flex-start;
-  }
+
+    @media (min-width: $media-screen-notebook) {
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
 }
 
 .optionsItem {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  text-align: center;
-  margin-bottom: 80px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 215px;
+    position: relative;
 
-  @media (min-width: $media-screen-notebook) {
-    margin-bottom: 0;
-  }
+    @media (min-width: $media-screen-notebook) {
+        margin-bottom: 0;
+        height: 650px;
 
-  &:nth-child(1) {
-    .button:hover {
-      background-color: darken(#FAB48D, 5)!important;
+        &:last-child {
+            margin-left: 234px;
+        }
     }
-  }
 
-  &:nth-child(2) {
-    .button:hover {
-      background-color: darken(#B17655, 5)!important;
+    &:after {
+        content: 'or';
+        font-size: 65px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -140px;
+        @include stroke(#fff, 4px);
+
+        @media (min-width: $media-screen-notebook) {
+            left: auto;
+            bottom: auto;
+            transform: none;
+            right: -150px;
+            top: 95px;
+        }
     }
-  }
 
-  &:nth-child(3) {
-    .button:hover {
-      background-color: darken(#FF5C5C, 5)!important;
+    &:last-child:after {
+        display: none;
     }
-  }
 
-  &:last-child {
-    margin-bottom: 0;
-  }
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
 
-  .imageWrapper {
+.imageWrapper {
     position: relative;
     width: 240px;
     height: 260px;
@@ -104,163 +93,82 @@
     z-index: -1;
 
     .image {
-      width: 100%;
-      height: 100%;
+        width: 100%;
+        height: 100%;
     }
 
 
-    @media (min-width: $media-screen-notebook) {
-      border: 5px solid #58473D;
+}
 
-      &:after {
-        content: 'or';
-        font-size: 65px;
-        position: absolute;
-        right: -120px;
-        top: 150px;
-        //left: 0;
-        //top: 0;
-        //width: auto;
-        z-index: 3;
-
-        text-shadow: 4px 0 4px #fff,
-        0 4px 4px #fff,
-        -4px 0 4px #fff,
-        0 -4px 4px #fff;
-      }
-
-      &.last:after {
-        display: none;
-      }
-    }
-  }
-
-  .name {
-    display: none;
+.name {
+    @include stroke(#fff, 4px);
     font-size: 40px;
-    text-shadow: 5px 0 5px #fff,
-    0 5px 5px #fff,
-    -5px 0 5px #fff,
-    0 -5px 5px #fff;
-    margin-top: -20px;
+    margin-top: -25px;
+}
 
-    @media (min-width: $media-screen-notebook) {
-      display: inline;
-    }
-
-    &.yellow {
-      display: inline;
-      text-shadow: 4px 0 4px #FFE600,
-      0 4px 4px #FFE600,
-      -4px 0 4px #FFE600,
-      0 -4px 4px #FFE600;
-      @media (max-width: $media-screen-notebook - 1) {
-        margin-top: -30px;
-      }
-    }
-  }
-
-  .description {
+.description {
     font-size: 32px;
     line-height: 45px;
     width: 230px;
     margin: 20px auto 0;
 
     @media (min-width: $media-screen-notebook) {
-      margin-top: 40px;
-
-      &.second {
-        width: 280px;
-        margin-left: 0;
-        margin-right: 0;
-      }
-      //width: 65%;
+        margin-top: 40px;
     }
-  }
+}
 
-  .info {
+.info {
     font-size: 20px;
     margin-top: 40px;
-    order: 5;
-
-    &.best {
-      order: 4;
-    }
 
     @media (min-width: $media-screen-notebook) {
-      order: 4;
-      margin-top: 70px;
+        margin-top: 70px;
     }
-  }
+}
 
-  .button {
+.button {
     width: 240px;
     height: 60px;
     display: flex;
-    margin-top: 20px;
+    margin-top: 45px;
     box-shadow: 6px 6px 0 #58473D;
     position: relative;
-
-    &:hover {
-      box-shadow: 8px 8px 0 #58473D;
-    }
+    background-color: #FAB48D;
 
     @media (min-width: $media-screen-notebook) {
-      order: 5;
+        margin-top: auto;
     }
 
-    &.last {
-      order: 4;
+    &:hover {
+        box-shadow: 8px 8px 0 #58473D;
+        background-color: darken(#FAB48D, 7) !important;
+    }
+
+    &.red {
+        background-color: #FF5C5C;
+
+        &:hover {
+            background-color: #FF8282 !important;
+        }
     }
 
     .text {
-      font-size: 32px;
-      margin: auto;
+        font-size: 32px;
+        margin: auto;
     }
 
     &.inactive {
-      filter: grayscale(100%);
-      cursor: default;
-    }
-
-    &.two:before {
-      content: 'try to win';
-      font-size: 20px;
-      color: rgba(0, 0, 0, 0.36);
-      position: absolute;
-      bottom: -35px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: none;
-
-      @media (min-width: $media-screen-notebook) {
-        display: flex;
-      }
+        filter: grayscale(100%);
+        cursor: default;
     }
 
     .timer {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: -70%;
-      font-size: 25px;
-      z-index: -1;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -60%;
+        font-size: 22px;
+        z-index: -1;
+        color: rgba(0, 0, 0, 0.55);
     }
-
-    .doge {
-      position: absolute;
-      transform: rotateX(-180deg) rotateZ(-35deg);
-      right: -10px;
-      bottom: -65px;
-      z-index: -1;
-      opacity: .4;
-      display: none;
-
-      @media (min-width: $media-screen-notebook) {
-        display: flex;
-      }
-    }
-
-
-  }
 }

@@ -25,7 +25,6 @@ const Home: NextPage = () => {
             <Intro/>
             <InterlineLayer/>
             <Options/>
-            <ButtonGetFreeNft />
             <Info/>
             <Faq/>
             <Footer/>
