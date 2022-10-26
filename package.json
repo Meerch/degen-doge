@@ -23,6 +23,7 @@
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "sass": "^1.54.9",
+    "swiper": "^8.4.4",
     "wagmi": "^0.6.8",
     "web3": "^1.8.0"
   },

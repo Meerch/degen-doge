@@ -7,10 +7,6 @@ const socialLinks = [
         name: 'twitter',
         href: 'https://twitter.com/degennftdoge?s=21&t=s6lfbT7PiUGFmJSlvcHN7A'
     },
-    {
-        name: 'telegram',
-        href: ''
-    },
 ]
 
 interface SocialLinksProps {

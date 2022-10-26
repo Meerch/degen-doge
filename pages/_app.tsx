@@ -5,6 +5,7 @@ import {Provider} from 'react-redux'
 import store from '../redux/store'
 import 'normalize.css'
 import '../styles/globals.scss'
+import 'swiper/css';
 
 const makeStore = () => store
 const wrapper = createWrapper(makeStore)
@@ -62,6 +63,7 @@ const App = ({Component, ...rest}: AppProps) => {
         </Head>
         <Provider store={store}>
             <WalletProvider
+                autoConnect={true}
                 wallets={wallets}
                 onError={(error: Error) => {
                     console.log('wallet errors: ', error);

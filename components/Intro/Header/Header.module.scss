@@ -21,9 +21,10 @@
 
 
   .image {
-    width: 92px;
-    height: 92px;
-    display: none;
+    width: 100px;
+    height: 80px;
+    transform: scale(2.3);
+    //display: none;
 
     @media (min-width: $media-screen-notebook) {
       display: block;

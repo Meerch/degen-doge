@@ -1,34 +1,27 @@
 export const questions = [
     {
-        question: 'Wtf is APTOS?',
-        answer: 'APTOS'
+        question: 'What is APTOS?',
+        answer: 'Aptos is a new Layer 1 blockchain that is faster, more secure, and more scalable than other L1 blockchains that are live today. It was built by former Meta (Libra) engineers, who also developed the Move language for this blockchain. Aptos launched their mainnet some days ago, and made an airdrop of native $APT token for the claim of their free NFT, which has become a game changer for some crypto nerds. For everyone else, this is just another fucking story.'
     },
     {
-        question: 'How to connect wallet?',
-        answer: 'Click the “connect wallet” button ser. You can use any EVM-compatible wallets like Metamask, Trust, Rainbow or Coinbase wallet. The only additional action you need to do is to add APTOS to your network list. Learn how to do it here (that’s easy!).'
+        question: 'What is FOMO?',
+        answer: 'Short form for ‘fear of missing out’. The feeling when you see a huge green dildo on a chart and you don’t own that coin, or you spent a year in ct and never heard about APTOS, so you sell other shit NFTs on SOL to buy into APTOS NFTs. As crypto trading is still very much driven by emotions rather than valuation, FOMO is a huge factor to consider when swing trading in crypto.'
     },
     {
-        question: 'How can I get APT?',
-        answer: 'You can get it at some popular exchanges such as Huobi, Kucoin or Gate.io and withdraw it to your wallet. If you hate CEXs like us, use Uniswap and don\'t pay withdrawal fees.'
+        question: 'WTF is APTODOGE?',
+        answer: '5555 collection of pooing dogs which represent real situations and emotions of NFT collectors rn.'
     },
     {
-        question: 'Why pooing doge?',
-        answer: 'Looks like it is the best metaphor for the APTOS ecosystem.'
+        question: 'Why pooing Doge?',
+        answer: 'Looks like it is the best metaphor for your 24/7 ct scrolling and APT airdrop missing at the same time.'
     },
     {
         question: 'Any plans, roadmap?',
-        answer: 'Not really. Lol. You never know when you’ll want to take the next shit, so we’ll improvise.'
-    },
-    {
-        question: 'How can I see my jpeg?',
-        answer: 'Visit available marketplace (if it’s live) and connect your wallet.'
-    },
-    {
-        question: 'How can I trade my jpeg?',
-        answer: 'As usual, on one of APTOS-compatible marketplaces. A full list of available marketplaces will be released after sale begins'
+        answer: 'Make fun on Aptos, then, be the first who makes shit on $SUI. However, you never know when you’ll want to take the next shit, so we’ll improvise.'
     },
     {
         question: 'What is the best trading strategy?',
-        answer: 'Take a dump when nobody sees '
-    }
+        answer: 'Don’t sell under 1 $APT and use it as your PFP. Classic'
+    },
+
 ]

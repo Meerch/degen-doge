@@ -59,12 +59,12 @@ const ButtonConnectWallet = () => {
                 </span>
             </Button>
 
-            {
-                connected &&
-                <span className={styles.balance}>
-                    your balance: {0} APT
-                </span>
-            }
+            {/*{*/}
+            {/*    connected &&*/}
+            {/*    <span className={styles.balance}>*/}
+            {/*        your balance: {0} APT*/}
+            {/*    </span>*/}
+            {/*}*/}
         </div>
     )
 }

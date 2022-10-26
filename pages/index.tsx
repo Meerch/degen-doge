@@ -11,9 +11,6 @@ import {RootState} from "../redux/reducers";
 import {TypeCurrentPopup} from "../redux/reducers/popup";
 import PopupConnectWallet from "../components/Popup/PopupConnectWallet";
 import PopupBuyNft from "../components/Popup/PopupBuyNft";
-import PopupSuccess from "../components/Popup/PopupSuccess";
-import PopupGetFreeNft from "../components/Popup/PopupGetFreeNft";
-import ButtonGetFreeNft from "../components/ButtonGetFreeNft";
 
 const Home: NextPage = () => {
     const {currentPopup}: { currentPopup: TypeCurrentPopup } = useSelector((state: RootState) => ({
@@ -33,10 +30,10 @@ const Home: NextPage = () => {
                 currentPopup === 'connect-wallet' &&
                 <PopupConnectWallet />
             }
-            {/*{*/}
-            {/*    currentPopup === 'buy-nft' &&*/}
-            {/*    <PopupBuyNft />*/}
-            {/*}*/}
+            {
+                currentPopup === 'buy-nft' &&
+                <PopupBuyNft />
+            }
             {/*{*/}
             {/*    currentPopup === 'success' &&*/}
             {/*    <PopupSuccess />*/}
