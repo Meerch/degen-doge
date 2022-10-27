@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import React from 'react'
 import styles from './SocialLinks.module.scss'
+import Link from "react-scroll";
 
 const socialLinks = [
     {
@@ -15,6 +16,7 @@ interface SocialLinksProps {
 }
 
 const SocialLinks: React.FC<SocialLinksProps> = ({classNameLink, classNameContainer}) => {
+
     return (
         <div className={classNames(styles.socialLinks, classNameContainer)}>
             {
@@ -30,6 +32,12 @@ const SocialLinks: React.FC<SocialLinksProps> = ({classNameLink, classNameContai
                     </a>
                 ))
             }
+
+            <span
+                className={classNames(styles.item, classNameLink)}
+            >
+                FAQ
+            </span>
         </div>
     )
 }

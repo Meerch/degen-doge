@@ -9,6 +9,15 @@ const Intro = () => {
         <div className={styles.intro}>
             <Header />
             <Content />
+            <div className={styles.supportedWallets}>
+                <span className={styles.name}>
+                    supported wallets:
+                </span>
+                <div className={styles.wallets}>
+                    <img className={styles.wallet} src='/images/wallets/martian.png' alt="martian"/>
+                    <img className={styles.wallet} src='/images/wallets/pantem.png' alt="pantem"/>
+                </div>
+            </div>
             <div className={styles.backgroundText}>
                 <span className={styles.text}>wen lambo</span>
                 <span className={styles.text}>much wow</span>

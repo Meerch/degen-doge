@@ -31,12 +31,12 @@ const Content = () => {
                 </div>
 
                 <img
-                    src="/images/aptos2.png"
+                    src="/images/aptos-logo.png"
                     alt="aptos"
                     className={styles.aptos}
                 />
 
-                <ButtonOnIntro />
+                <ButtonOnIntro className={styles.button}/>
             </div>
         </div>
     )
