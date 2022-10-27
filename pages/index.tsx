@@ -12,6 +12,7 @@ import {TypeCurrentPopup} from "../redux/reducers/popup";
 import PopupConnectWallet from "../components/Popup/PopupConnectWallet";
 import PopupBuyNft from "../components/Popup/PopupBuyNft";
 import DotRing from "../components/DotRing/DotRing";
+import {FieldPrintLogo} from "../components/FieldPrintLogo/FieldPrintLogo";
 
 const Home: NextPage = () => {
     const {currentPopup}: { currentPopup: TypeCurrentPopup } = useSelector((state: RootState) => ({
@@ -19,32 +20,36 @@ const Home: NextPage = () => {
     }))
 
     return (
-        <div className='wrap'>
-            <DotRing />
-            <Intro/>
-            <InterlineLayer/>
-            <Options/>
-            <Info/>
-            <Faq/>
-            <Footer/>
+        <>
+            <div className='wrap'>
+                <DotRing />
+                <Intro/>
+                <InterlineLayer/>
+                <Options/>
+                <Info/>
+                <Faq/>
+                <Footer/>
 
-            {
-                currentPopup === 'connect-wallet' &&
-                <PopupConnectWallet />
-            }
-            {
-                currentPopup === 'buy-nft' &&
-                <PopupBuyNft />
-            }
-            {/*{*/}
-            {/*    currentPopup === 'success' &&*/}
-            {/*    <PopupSuccess />*/}
-            {/*}*/}
-            {/*{*/}
-            {/*    currentPopup === 'get-free-nft' &&*/}
-            {/*    <PopupGetFreeNft />*/}
-            {/*}*/}
-        </div>
+                <FieldPrintLogo />
+
+                {
+                    currentPopup === 'connect-wallet' &&
+                    <PopupConnectWallet />
+                }
+                {
+                    currentPopup === 'buy-nft' &&
+                    <PopupBuyNft />
+                }
+                {/*{*/}
+                {/*    currentPopup === 'success' &&*/}
+                {/*    <PopupSuccess />*/}
+                {/*}*/}
+                {/*{*/}
+                {/*    currentPopup === 'get-free-nft' &&*/}
+                {/*    <PopupGetFreeNft />*/}
+                {/*}*/}
+            </div>
+        </>
     )
 }
 

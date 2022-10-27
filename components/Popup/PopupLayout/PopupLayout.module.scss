@@ -5,15 +5,18 @@
   height: 100vh;
   position: fixed;
   left: 0;
+  top: 0;
+  bottom: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.55);
-  z-index: 100;
+  z-index: 1000;
 }
 
 .popup {
   position: fixed;
   left: 50%;
   top: 50%;
+  z-index: 1001;
   transform: translate(-50%, -50%);
   background: linear-gradient(#ffbc6d, #ffbc6d) 50% 50%/calc(100% - 18px) calc(100% - 18px) no-repeat, linear-gradient(rgba(0, 0, 0, 0.30) 0%, rgba(72, 171, 224, 0) 50%, rgba(0, 0, 0, 0.30) 100%);
 

@@ -8,6 +8,36 @@
     margin-top: 30px;
 }
 
+@keyframes switchColors {
+    0% {
+        color: #97D746;
+    }
+
+    17% {
+        color: #FF7A7A;
+    }
+
+    34% {
+        color: #0BDFB9;
+    }
+
+    51% {
+        color: #558EE4;
+    }
+
+    68% {
+        color: #B46EEB;
+    }
+
+    85% {
+        color: #0BDFB9;
+    }
+
+    100% {
+        color: #FF2156;
+    }
+}
+
 .title {
     text-align: center;
     font-size: 45px;
@@ -22,7 +52,8 @@
         width: 1000px;
 
         .mark {
-            color: #C82F2F;
+            //color: #C82F2F;
+            animation: switchColors 3s linear infinite;
         }
     }
 }

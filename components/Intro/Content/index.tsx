@@ -14,7 +14,7 @@ const Content = () => {
                         alt="Doge"
                     />
 
-                    <SaleTimer className={styles.timer}/>
+                    {/*<SaleTimer className={styles.timer}/>*/}
                 </div>
 
                 <div className={styles.text}>

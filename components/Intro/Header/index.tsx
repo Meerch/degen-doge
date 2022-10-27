@@ -21,7 +21,7 @@ const Header = () => {
 
             <ButtonConnectWallet/>
 
-            <SocialLinks/>
+            <SocialLinks classNameLink={styles.socialLink}/>
         </div>
     );
 };

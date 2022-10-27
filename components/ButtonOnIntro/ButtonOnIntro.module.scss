@@ -3,6 +3,7 @@
 .wrapperButton {
     position: relative;
     margin: 45px auto 0;
+    z-index: 1000;
 
     @media (min-width: $media-screen-notebook) {
         margin: 50px auto 0;
@@ -17,7 +18,7 @@
     align-items: center;
     justify-content: center;
     background-color: #FF5C5C;
-    border: 5px solid #FFB800;
+    border: 5px solid #FFB800!important;
 
     &:hover {
         background-color: #FF8282;

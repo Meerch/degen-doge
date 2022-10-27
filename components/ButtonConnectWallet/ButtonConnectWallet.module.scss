@@ -5,6 +5,7 @@
   flex-flow: column nowrap;
   position: relative;
 
+
   @media (min-width: $media-screen-notebook) {
     order: 3;
   }
@@ -12,6 +13,8 @@
 
 .button {
   background: #92A87D;
+  //width: 100%;
+  //max-width: 180px;
   width: 180px;
   height: 57px;
   display: flex;

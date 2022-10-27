@@ -1,3 +1,5 @@
+@import "styles/variables";
+
 @font-face {
   font-family: 'Ticketing';
   src: url("../public/fonts/Ticketing.ttf") format('truetype');
@@ -5,16 +7,23 @@
   font-style: normal
 }
 
+a {
+  z-index: 20;
+}
+
 *,
 *:before,
 *:after {
   box-sizing: border-box;
   margin: 0;
-  //cursor: none!important;
-  cursor: url("/images/cursor.png") 16 15, auto!important;
 
-  &:hover {
-    cursor: url("/images/cursor.png"), auto!important;
+
+  @media (min-width: $media-screen-notebook) {
+    cursor: url("/images/cursor.png") 16 15, auto!important;
+
+    &:hover {
+      cursor: url("/images/cursor.png"), auto!important;
+    }
   }
 }
 
