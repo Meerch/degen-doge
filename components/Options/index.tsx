@@ -34,9 +34,11 @@ const Options = () => {
                     <div className={styles.description}>get NFT instantly through our strange website</div>
 
                     <Button
-                        className={styles.button}
+                        className={classNames(styles.button, styles.red)}
                     >
                         <span className={styles.text}>buy with $APT</span>
+
+                        <span className={styles.comingSoon}>coming soon</span>
                     </Button>
                 </div>
 
@@ -54,11 +56,11 @@ const Options = () => {
                     <Button
                         className={classNames(
                             styles.button,
-                            styles.red
+                            styles.inactive
                         )}
                     >
                         <span className={styles.text}>coming soon</span>
-                        <SaleTimer className={styles.timer}/>
+                        {/*<SaleTimer className={styles.timer}/>*/}
                     </Button>
                 </div>
 

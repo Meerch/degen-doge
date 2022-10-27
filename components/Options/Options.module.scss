@@ -202,4 +202,14 @@
         z-index: -1;
         color: rgba(0, 0, 0, 0.55);
     }
+
+    .comingSoon {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -60%;
+        font-size: 22px;
+        z-index: -1;
+        color: rgba(0, 0, 0, 0.55);
+    }
 }
