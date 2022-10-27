@@ -52,7 +52,7 @@ const Options = () => {
                         {/*/>*/}
                         {svgOption2}
                     </div>
-                    <span className={styles.name}>option 1</span>
+                    <span className={styles.name}>option 2</span>
                     <div className={styles.description}>get NFT through available NFT marketplaces</div>
 
                     <Button
