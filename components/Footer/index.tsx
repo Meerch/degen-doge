@@ -8,7 +8,7 @@ const Footer = () => {
             <img className={styles.logo} src="/images/logo.png" alt="Logo"/>
 
             <div className={styles.content}>
-                <SocialLinks classNameContainer={styles.links} classNameLink={styles.link}/>
+                {/*<SocialLinks classNameContainer={styles.links} classNameLink={styles.link}/>*/}
                 <span className={styles.description}>made by degens for degens</span>
             </div>
 

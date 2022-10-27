@@ -24,10 +24,9 @@ const ButtonOnIntro: FC<ButtonOnIntroProps> = ({className}) => {
     }
 
     return (
-        <div className={classNames(styles.wrapperButton, className)}>
             <Button
                 onClick={handlerClickButton}
-                className={styles.button}
+                className={classNames(styles.button, className)}
             >
                 {/*{*/}
                 {/*    connected*/}
@@ -37,9 +36,6 @@ const ButtonOnIntro: FC<ButtonOnIntroProps> = ({className}) => {
                 {/*<SaleTimer />*/}
                 coming soon
             </Button>
-
-            {/*<span className={styles.amountMinted}>0/5555 minted</span>*/}
-        </div>
     );
 };
 

@@ -5,6 +5,7 @@ import classNames from "classnames";
 import {useDispatch} from "react-redux";
 import {changeCurrentPopup} from "../../redux/actions/popup";
 import SaleTimer from "../SaleTimer";
+import {svgOption2} from "../../svg/svgOption2";
 
 const Options = () => {
     const dispatch = useDispatch()
@@ -18,7 +19,7 @@ const Options = () => {
     return (
         <div className={styles.options}>
             <span className={styles.title}>
-                How to get my first <span className={styles.mark}>degen</span> NFT on APTOS?
+               How to get my first <span className={styles.mark}>degen</span> NFT on Aptos?
             </span>
 
             <div className={styles.optionsItems}>
@@ -26,7 +27,7 @@ const Options = () => {
                     <div className={styles.imageWrapper}>
                         <img
                             className={styles.image}
-                            src='/images/options/option-1.jpg'
+                            src='/images/option-1.png'
                             alt="Image doge"
                         />
                     </div>
@@ -44,11 +45,12 @@ const Options = () => {
 
                 <div className={styles.optionsItem}>
                     <div className={styles.imageWrapper}>
-                        <img
-                            className={styles.image}
-                            src='/images/options/option-1.jpg'
-                            alt="Image doge"
-                        />
+                        {/*<img*/}
+                        {/*    className={styles.image}*/}
+                        {/*    src='/images/options/option-1.jpg'*/}
+                        {/*    alt="Image doge"*/}
+                        {/*/>*/}
+                        {svgOption2}
                     </div>
                     <span className={styles.name}>option 1</span>
                     <div className={styles.description}>get NFT through available NFT marketplaces</div>

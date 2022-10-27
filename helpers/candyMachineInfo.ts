@@ -1,4 +1,4 @@
-export const candyMachineAddress = "0xb2ffa88ddf2eaa0ae972d96900d2e20619b406230a855d806ea804d3cfbdade0";
+export const candyMachineAddress = "0xbc52ce66a504f594f289ae7834b8f655d9af12541ec688a738219a71d7a5b96d";
 export const collectionName = "Aptos Collection"; // Case sensitive!
 export const collectionCoverUrl = "https://cloudflare-ipfs.com/ipfs/QmeCuKGLvAGrBAPGdaRh2hkTjXsXuk8VEUHNoYRD4cJG51";
 export const mode: 'dev' | 'test' | 'mainnet' = "test"; // "dev" or "test" or "mainnet"

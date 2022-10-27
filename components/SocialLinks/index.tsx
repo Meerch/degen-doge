@@ -6,8 +6,13 @@ import {Link} from "react-scroll";
 const socialLinks = [
     {
         name: 'twitter',
-        href: 'https://twitter.com/degennftdoge?s=21&t=s6lfbT7PiUGFmJSlvcHN7A'
+        href: 'https://twitter.com/aptodoge'
     },
+    {
+        name: 'discord',
+        href: 'https://discord.com'
+    },
+
 ]
 
 interface SocialLinksProps {

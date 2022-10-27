@@ -5,7 +5,13 @@
     display: flex;
     flex-flow: column;
     align-items: center;
-    margin-top: 30px;
+    //margin-top: 30px;
+
+    @media (min-width: $media-screen-notebook) {
+        background: url("/images/background-options.png") no-repeat 100% 100% / cover;
+        padding-bottom: 130px;
+        padding-top: 150px;
+    }
 }
 
 @keyframes switchColors {
@@ -41,20 +47,19 @@
 .title {
     text-align: center;
     font-size: 45px;
-    line-height: 93px;
     width: 80%;
     margin: 0 auto;
+    @include stroke(rgba(255, 255, 255, 0.5), 4px);
+    line-height: 65px;
+
+    .mark {
+        animation: switchColors 3s linear infinite;
+    }
 
     @media (min-width: $media-screen-notebook) {
-        @include stroke(rgba(255, 255, 255, 0.5), 4px);
         line-height: 103px;
         font-size: 65px;
         width: 1000px;
-
-        .mark {
-            //color: #C82F2F;
-            animation: switchColors 3s linear infinite;
-        }
     }
 }
 
@@ -62,12 +67,13 @@
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    margin: 90px auto 0;
+    margin: 40px auto 0;
 
     @media (min-width: $media-screen-notebook) {
         flex-flow: row nowrap;
         justify-content: space-between;
         align-items: flex-start;
+        margin: 90px auto 0;
     }
 }
 
@@ -76,7 +82,7 @@
     flex-flow: column nowrap;
     align-items: center;
     text-align: center;
-    margin-bottom: 215px;
+    margin-bottom: 120px;
     position: relative;
 
     @media (min-width: $media-screen-notebook) {
@@ -96,6 +102,7 @@
         transform: translateX(-50%);
         bottom: -140px;
         @include stroke(#fff, 4px);
+        display: none;
 
         @media (min-width: $media-screen-notebook) {
             left: auto;
@@ -103,6 +110,7 @@
             transform: none;
             right: -150px;
             top: 95px;
+            display: flex;
         }
     }
 
@@ -117,10 +125,12 @@
 
 .imageWrapper {
     position: relative;
-    width: 240px;
-    height: 260px;
+    //width: 240px;
+    //height: 260px;
+    width: auto;
+    height: auto;
     margin: 0 auto;
-    border: 5px solid #000;
+    //border: 5px solid #000;
     z-index: -1;
 
     .image {
@@ -134,17 +144,21 @@
 .name {
     @include stroke(#fff, 4px);
     font-size: 40px;
-    margin-top: -25px;
+    //margin-top: -25px;
+    margin-top: 5px;
 }
 
 .description {
-    font-size: 32px;
-    line-height: 45px;
-    width: 230px;
+    font-size: 27px;
+    line-height: 21px;
+    width: 240px;
     margin: 20px auto 0;
 
     @media (min-width: $media-screen-notebook) {
         margin-top: 40px;
+        font-size: 32px;
+        line-height: 45px;
+        width: 230px;
     }
 }
 
@@ -189,7 +203,8 @@
     }
 
     &.inactive {
-        filter: grayscale(100%);
+        //filter: grayscale(100%);
+        background-color: #949494;
         cursor: default;
     }
 

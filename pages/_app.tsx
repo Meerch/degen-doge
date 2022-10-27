@@ -25,7 +25,8 @@ import {
     TokenPocketWalletAdapter,
     BloctoWalletAdapter,
     WalletAdapterNetwork,
-    Coin98WalletAdapter
+    Coin98WalletAdapter,
+    RiseWalletAdapter
 } from '@manahippo/aptos-wallet-adapter';
 import {useMemo} from "react";
 
@@ -36,9 +37,10 @@ const App = ({Component, ...rest}: AppProps) => {
             // new HippoWalletAdapter(),
             // new HippoExtensionWalletAdapter(),
             new MartianWalletAdapter(),
-            // new AptosWalletAdapter(),
-            // new FewchaWalletAdapter(),
             new PontemWalletAdapter(),
+            new FewchaWalletAdapter(),
+            new RiseWalletAdapter(),
+            new AptosWalletAdapter()
             // new SpikaWalletAdapter(),
             // new FletchWalletAdapter(),
             // new AptosSnapAdapter(),

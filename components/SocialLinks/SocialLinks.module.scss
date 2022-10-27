@@ -17,13 +17,14 @@
   .item {
     font-size: 25px;
     transition: text-shadow .1s linear;
+    margin-right: 60px;
 
     &:hover {
       text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     }
 
     &:last-child {
-      margin-left: 60px;
+      margin-right: 0;
     }
   }
 }

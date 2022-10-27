@@ -1,15 +1,5 @@
 @import "styles/variables";
 
-.wrapperButton {
-    position: relative;
-    margin: 45px auto 0;
-    z-index: 1000;
-
-    @media (min-width: $media-screen-notebook) {
-        margin-top: 50px;
-    }
-}
-
 .button {
     width: 320px;
     height: 57px;

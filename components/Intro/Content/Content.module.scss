@@ -35,7 +35,19 @@
         //margin-left: 90px;
         //margin-top: 140px;
         border: 5px solid #000;
+        //background: linear-gradient(130deg, #ffb800 0%, rgba(0, 0, 0, 0.5) 63%, #ffb800 68%);
         position: relative;
+
+        @media (min-width: $media-screen-notebook) {
+            border-radius: 0;
+            padding: 10px;
+            border: none;
+            box-sizing: content-box;
+            width: 400px;
+            height: 400px;
+            position: relative;
+            background: linear-gradient(130deg, #ffb800 0%, rgba(0, 0, 0, 0.5) 63%, #ffb800 68%);
+        }
 
         &.mintSoon:after {
             position: absolute;
@@ -50,17 +62,6 @@
                 bottom: 15px;
                 right: 50px;
             }
-        }
-
-        @media (min-width: $media-screen-notebook) {
-            background: linear-gradient(130deg, #ffb800 0%, rgba(0, 0, 0, 0.5) 63%, #ffb800 68%);
-            border-radius: 0;
-            padding: 10px;
-            border: none;
-            box-sizing: content-box;
-            width: 400px;
-            height: 400px;
-            position: relative;
         }
 
         img {
@@ -146,12 +147,8 @@
         }
     }
 
-    .aptos {
-        max-width: 422px;
-        width: 110px;
-        height: auto;
+    svg {
         margin: 35px auto 0;
-        //box-shadow: 0 5px 13px rgba(0, 0, 0, 0.57);
 
         @media (min-width: $media-screen-notebook) {
             margin: 40px 0 0 auto;
@@ -161,9 +158,62 @@
     }
 }
 
-.button {
+
+.wrapperButton {
+    position: relative;
+    margin: 45px auto 0;
+    z-index: 1000;
 
     @media (min-width: $media-screen-notebook) {
         margin: 50px 0 0 auto!important;
+    }
+}
+
+.button {
+
+}
+
+.supportedWallets {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    bottom: -75px;
+
+    //margin-top: 90px;
+
+    @media (min-width: $media-screen-notebook) {
+        flex-flow: row nowrap;
+    }
+
+    .name {
+        font-size: 32px;
+        white-space: nowrap;
+    }
+
+    .wallets {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        margin-top: 15px;
+
+        @media (min-width: $media-screen-notebook) {
+            flex-flow: row nowrap;
+            margin-left: 40px;
+            margin-top: 0;
+        }
+    }
+
+    .wallet {
+
+        &:first-child {
+            height: 32px;
+        }
+
+        &:last-child {
+            margin-left: 60px;
+        }
     }
 }

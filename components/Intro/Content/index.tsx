@@ -3,6 +3,7 @@ import styles from './Content.module.scss'
 import SaleTimer from "../../SaleTimer";
 import ButtonOnIntro from "../../ButtonOnIntro";
 import classNames from 'classnames';
+import {svgAptos} from "../../../svg/svgAptos";
 
 const Content = () => {
     return (
@@ -30,13 +31,19 @@ const Content = () => {
                     NFT representation of your FOMO expirience on
                 </div>
 
-                <img
-                    src="/images/aptos-logo.png"
-                    alt="aptos"
-                    className={styles.aptos}
-                />
+                {/*<img*/}
+                {/*    src="/images/aptos-logo.png"*/}
+                {/*    alt="aptos"*/}
+                {/*    className={styles.aptos}*/}
+                {/*/>*/}
+                {svgAptos}
 
-                <ButtonOnIntro className={styles.button}/>
+
+                <div className={classNames(styles.wrapperButton)}>
+                    <ButtonOnIntro className={styles.button}/>
+                </div>
+
+
             </div>
         </div>
     )

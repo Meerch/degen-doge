@@ -7,10 +7,12 @@
   height: 470px;
   width: 100%;
   overflow: hidden;
+  margin-bottom: -150px;
 
   @media (max-width: $media-screen-notebook - 1) {
     height: auto;
     margin-top: 30px;
+    margin-bottom: 0;
   }
 }
 
@@ -25,14 +27,16 @@
 
 
 .containerCarousel {
-  overflow: hidden;
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-
   line-height: 0;
   font-size: 0;
+
+  @media (min-width: $media-screen-notebook) {
+    overflow: hidden;
+  }
 
   //&:hover {
   //  & * {
@@ -43,28 +47,20 @@
 
 .image {
   background: url('/images/carousel-6.png') repeat-x 100% / contain;
-  height: 286px;
-
+  height: 197px;
   vertical-align: top;
   display: block;
   float: left;
-
-
-  //min-width: 3472px;
-  //min-width: 9444px;
-  //min-width: 9364px;
   min-width: 10346px;
   animation: slide 70s linear infinite;
-  //opacity: 0;
+  margin-bottom: -100px;
 
- // 10 346
   &.secondImage {
     opacity: 1;
     margin-left: -2px;
-    //min-width: 9364px;
   }
 
-  @media (max-width: $media-screen-notebook - 1) {
-    display: none;
+  @media (min-width: $media-screen-notebook) {
+    height: 286px;
   }
 }

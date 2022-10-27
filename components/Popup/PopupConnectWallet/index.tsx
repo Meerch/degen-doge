@@ -5,6 +5,7 @@ import Button from '../../UI/Button';
 import {useDispatch} from "react-redux";
 import {changeCurrentPopup} from "../../../redux/actions/popup";
 import {useWallet} from "@manahippo/aptos-wallet-adapter";
+import {WalletName} from "@manahippo/aptos-wallet-adapter/src/WalletAdapters/BaseAdapter";
 
 const PopupConnectWallet = () => {
     const dispatch = useDispatch()
@@ -20,6 +21,15 @@ const PopupConnectWallet = () => {
         }
     }, [connected])
 
+    const onConnect = async (name: WalletName) => {
+        try {
+            await connect(name)
+        } catch {
+            console.log('error')
+        }
+
+    }
+
     return (
         <PopupLayout className={styles.popup}>
             <span className={styles.title}>Connect wallet</span>
@@ -31,9 +41,7 @@ const PopupConnectWallet = () => {
                         return (
                             <Button
                                 className={styles.button}
-                                onClick={() => {
-                                    void connect(option.name);
-                                }}
+                                onClick={() => onConnect(option.name)}
                                 id={option.name.split(' ').join('_')}
                                 key={option.name}
                             >
