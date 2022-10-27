@@ -6,6 +6,7 @@ import {svgMartian} from "../../svg/svgMartian";
 import {svgPantem} from "../../svg/svgPantem";
 import {svgFewcha} from "../../svg/svgFewcha";
 import { svgRise } from '../../svg/svgRise';
+import {svgPetra} from "../../svg/svgPetra";
 
 const Intro = () => {
 
@@ -24,6 +25,7 @@ const Intro = () => {
                     {svgPantem}
                     {svgFewcha}
                     {svgRise}
+                    {svgPetra}
                 </div>
             </div>
 
