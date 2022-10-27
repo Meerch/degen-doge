@@ -6,12 +6,12 @@ const DotRing = () => {
 
     return (
         <>
-            <img
-                src='/images/logo.png'
-                alt='0'
-                style={{left: `${x}px`, top: `${y}px`}}
-                className={styles.dot}
-            />
+            {/*<img*/}
+            {/*    src='/images/logo.png'*/}
+            {/*    alt='0'*/}
+            {/*    style={{left: `${x}px`, top: `${y}px`}}*/}
+            {/*    className={styles.dot}*/}
+            {/*/>*/}
             <img
                 src='/images/logo.png'
                 alt='0'

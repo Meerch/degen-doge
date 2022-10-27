@@ -10,10 +10,11 @@
 *:after {
   box-sizing: border-box;
   margin: 0;
-  cursor: none!important;
+  //cursor: none!important;
+  cursor: url("/images/cursor.png") 16 15, auto!important;
 
   &:hover {
-    cursor: none!important;
+    cursor: url("/images/cursor.png"), auto!important;
   }
 }
 
