@@ -10,7 +10,7 @@ const Header = () => {
             <div className={styles.logo}>
                 <img
                     className={styles.image}
-                    src="/images/logo-2-2x.png"
+                    src="/images/logo-2.png"
                     alt="Logo"
                 />
 

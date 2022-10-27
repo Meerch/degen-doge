@@ -11,6 +11,7 @@ import {RootState} from "../redux/reducers";
 import {TypeCurrentPopup} from "../redux/reducers/popup";
 import PopupConnectWallet from "../components/Popup/PopupConnectWallet";
 import PopupBuyNft from "../components/Popup/PopupBuyNft";
+import DotRing from "../components/DotRing/DotRing";
 
 const Home: NextPage = () => {
     const {currentPopup}: { currentPopup: TypeCurrentPopup } = useSelector((state: RootState) => ({
@@ -19,6 +20,7 @@ const Home: NextPage = () => {
 
     return (
         <div className='wrap'>
+            <DotRing />
             <Intro/>
             <InterlineLayer/>
             <Options/>
