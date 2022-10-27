@@ -3,7 +3,7 @@
 .header {
   display: flex;
   flex-flow: row wrap;
-  padding: 70px 40px 0;
+  padding: 20px 40px 0;
   justify-content: space-between;
   align-items: flex-start;
 
@@ -11,7 +11,7 @@
   @media (min-width: $media-screen-notebook) {
     flex-flow: row nowrap;
     align-items: center;
-    padding: 70px 100px 0;
+    padding: 30px 160px 0;
   }
 }
 

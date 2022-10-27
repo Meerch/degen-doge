@@ -5,7 +5,7 @@ import classNames from "classnames";
 
 const MintDetails = () => {
     const [mintDetails, setMintDetails] = useState({
-        mintDate: '28.10.22',
+        mintDate: null,
         price: 1,
         limitPerWallet: 33,
         supply: 5555
@@ -19,7 +19,7 @@ const MintDetails = () => {
                 {/*<span className={styles.convert}>( ~$9 )</span>*/}
             </div>
             <span className={styles.text}>Limit per wallet: {mintDetails.limitPerWallet || 'TBA'}</span>
-            <span className={styles.text}>Supply: {mintDetails.supply || 'TBA'} HFT</span>
+            <span className={styles.text}>Supply: {mintDetails.supply || 'TBA'} HFTs</span>
             {/*<span className={styles.text}>NFT distribution: {mintDetails.nftDistribution}</span>*/}
         </div>
     )

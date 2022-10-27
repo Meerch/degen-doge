@@ -11,6 +11,7 @@
         background: url("/images/background-options.png") no-repeat 100% 100% / cover;
         padding-bottom: 130px;
         padding-top: 150px;
+        margin-top: -150px;
     }
 }
 
@@ -85,6 +86,15 @@
     margin-bottom: 120px;
     position: relative;
 
+    &:nth-child(1) {
+        .image {
+            width: 187px;
+            height: auto;
+            margin-bottom: 20px;
+            border: 5px solid #000;
+        }
+    }
+
     @media (min-width: $media-screen-notebook) {
         margin-bottom: 0;
         height: 580px;
@@ -131,14 +141,13 @@
     height: auto;
     margin: 0 auto;
     //border: 5px solid #000;
-    z-index: -1;
+    //z-index: -1;
+    z-index: 1000;
 
     .image {
         width: 100%;
         height: 100%;
     }
-
-
 }
 
 .name {
@@ -227,4 +236,140 @@
         z-index: -1;
         color: rgba(0, 0, 0, 0.55);
     }
+}
+
+.svgElement {
+    z-index: 1000;
+
+    //&:hover {
+    //    .section1 {
+    //        fill: #E879F9 !important;
+    //    }
+    //}
+}
+
+
+.section {
+    &1 {
+        transition: fill .1s linear;
+        &:hover {
+            fill: #E879F9;
+        }
+    }
+
+    &2 {
+        transition: fill .1s linear;
+        &:hover {
+            fill: #F0ABFC;
+        }
+    }
+
+    &3 {
+        transition: fill .1s linear;
+        &:hover {
+
+            fill: #C026D3;
+        }
+    }
+
+    &4 {
+        transition: fill .1s linear;
+        &:hover {
+            fill: #D946EF;
+        }
+    }
+
+    &5 {
+        transition: fill .1s linear;
+        &:hover {
+            fill: #F0ABFC;
+        }
+    }
+
+    &6 {
+        transition: fill .1s linear;
+        &:hover {
+            fill: #A21CAF;
+        }
+    }
+
+    &7 {
+        transition: fill .1s linear;
+        &:hover {
+            fill: #D946EF;
+        }
+    }
+
+    &8 {
+        transition: fill .1s linear;
+        &:hover {
+            fill: #F5D0FE;
+        }
+    }
+
+    &9 {
+        transition: fill .1s linear;
+        &:hover {
+            fill: #FAE8FF;
+        }
+    }
+
+    &10 {
+        transition: fill .1s linear;
+        &:hover {
+            fill: #701A75;
+        }
+    }
+
+    &11 {
+        transition: fill .1s linear;
+        &:hover {
+            fill: #86198F;
+        }
+    }
+
+
+    //&1 {
+    //    fill: red;
+    //}
+    //
+    //&2 {
+    //    fill: blue;
+    //}
+    //
+    //&3 {
+    //    fill: black;
+    //}
+    //
+    //&4 {
+    //    fill: yellow;
+    //}
+    //
+    //&5 {
+    //    fill: green;
+    //}
+    //
+    //&6 {
+    //    fill: cyan;
+    //}
+    //
+    //&7 {
+    //    fill: #b000b0;
+    //}
+    //&8 {
+    //    fill: deeppink;
+    //}
+    //&9 {
+    //    fill: #EF884E;
+    //}
+    //
+    //&10 {
+    //    fill: slateblue;
+    //}
+    //
+    //&11 {
+    //    fill: darkblue;
+    //}
+
+
 }

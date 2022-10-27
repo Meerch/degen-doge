@@ -9,12 +9,12 @@
     right: 0;
     bottom: 0;
     z-index: 12;
-    display: none;
+    //display: none;
     overflow: hidden;
+    display: flex;
 
-    @media (min-width: $media-screen-notebook) {
-        display: flex;
-    }
+    //@media (min-width: $media-screen-notebook) {
+    //}
 }
 
 .logo {

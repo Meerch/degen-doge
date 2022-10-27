@@ -44,7 +44,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({classNameLink, classNameContai
             {/*    FAQ*/}
             {/*</span>*/}
             <Link
-                smooth={2000}
+                smooth={true}
                 to='faq'
                 className={classNames(styles.item, classNameLink)}
             >

@@ -34,10 +34,10 @@
 
   .text {
     margin: auto;
-    font-size: 45px;
+    font-size: 44px;
 
-    @media (min-width: $media-screen-notebook) {
-      font-size: 65px;
-    }
+    //@media (min-width: $media-screen-notebook) {
+    //  font-size: 65px;
+    //}
   }
 }

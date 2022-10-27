@@ -27,7 +27,7 @@ const Options = () => {
                     <div className={styles.imageWrapper}>
                         <img
                             className={styles.image}
-                            src='/images/option-1.png'
+                            src='/images/option-1.gif'
                             alt="Image doge"
                         />
                     </div>

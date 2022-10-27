@@ -3,11 +3,11 @@
 .wrapper {
   position: relative;
   //margin-top: 100px;
-  margin-top: -70px;
+  margin-top: -280px;
   height: 470px;
   width: 100%;
   overflow: hidden;
-  margin-bottom: -150px;
+  //margin-bottom: -150px;
 
   @media (max-width: $media-screen-notebook - 1) {
     height: auto;
@@ -34,15 +34,15 @@
   line-height: 0;
   font-size: 0;
 
-  @media (min-width: $media-screen-notebook) {
-    overflow: hidden;
-  }
-
-  //&:hover {
-  //  & * {
-  //    animation-play-state: paused;
-  //  }
+  //@media (min-width: $media-screen-notebook) {
+  //  overflow: hidden;
   //}
+
+  &:hover {
+    & * {
+      animation-play-state: paused;
+    }
+  }
 }
 
 .image {
@@ -51,7 +51,8 @@
   vertical-align: top;
   display: block;
   float: left;
-  min-width: 10346px;
+  //min-width: 10346px;
+  min-width: 10376px;
   animation: slide 70s linear infinite;
   margin-bottom: -100px;
 
