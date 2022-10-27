@@ -164,6 +164,6 @@
 .button {
 
     @media (min-width: $media-screen-notebook) {
-        margin: 50px 0 0 auto;
+        margin: 50px 0 0 auto!important;
     }
 }
