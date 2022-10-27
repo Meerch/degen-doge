@@ -11,7 +11,7 @@ interface SaleTimeProps {
 
 const SaleTimer: FC<SaleTimeProps> = ({className}) => {
     const [time, setTime] = useState('')
-    const [deadline, setDeadline] = useState<Date>(new Date(2022, 9, 30));
+    const [deadline, setDeadline] = useState<Date>(new Date(2022, 9, 31));
 
     useEffect(() => {
         if (!deadline) {
