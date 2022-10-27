@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import React from 'react'
 import styles from './SocialLinks.module.scss'
-import Link from "react-scroll";
+import {Link} from "react-scroll";
 
 const socialLinks = [
     {
@@ -33,11 +33,18 @@ const SocialLinks: React.FC<SocialLinksProps> = ({classNameLink, classNameContai
                 ))
             }
 
-            <span
+            {/*<span*/}
+            {/*    className={classNames(styles.item, classNameLink)}*/}
+            {/*>*/}
+            {/*    FAQ*/}
+            {/*</span>*/}
+            <Link
+                smooth={2000}
+                to='faq'
                 className={classNames(styles.item, classNameLink)}
             >
                 FAQ
-            </span>
+            </Link>
         </div>
     )
 }
