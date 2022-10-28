@@ -64,12 +64,6 @@ const PopupBuyNft = () => {
 
     }
 
-    // useEffect(() => {
-    //     if (!wallet.autoConnect && wallet.wallet?.adapter) {
-    //         void wallet.connect();
-    //     }
-    // }, [wallet.autoConnect, wallet.wallet, wallet.connect])
-
     const mint = async () => {
         console.log('wallet.account?.address?.toString()', wallet.account?.address?.toString());
         if (wallet.account?.address?.toString() === undefined || mintInfo.minting) {
