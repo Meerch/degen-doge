@@ -5,7 +5,8 @@ import {Provider} from 'react-redux'
 import store from '../redux/store'
 import 'normalize.css'
 import '../styles/globals.scss'
-import 'swiper/css';
+import 'swiper/scss';
+import 'swiper/scss/navigation';
 
 const makeStore = () => store
 const wrapper = createWrapper(makeStore)

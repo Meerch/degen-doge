@@ -16,17 +16,85 @@
   }
 }
 
+@keyframes progress {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: calc(100% - 18px);
+  }
+}
+
+.progress {
+  //transition: width 5s linear;
+  width: 0;
+  height: 8px;
+  background-color: #739650;
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  animation: progress 37s linear forwards;
+}
+
 .title {
   font-size: 32px;
   margin-top: 30px;
 
   @media (min-width: $media-screen-notebook) {
-    margin-top: 50px;
+    margin-top: 35px;
   }
 }
 
-.doge {
+.galleryWrapper {
+  display: flex;
   margin-top: 10px;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.gallery {
+  width: 228px;
+  margin: 0 40px;
+  //width: 100%;
+  //padding: 0 70px;
+  //display: flex;
+  //align-items: center;
+  //flex-flow: row nowrap;
+  //justify-content: space-between;
+}
+
+.arrow {
+  width: 65px;
+  height: auto;
+  padding: 15px;
+
+  &.inactive {
+    opacity: 0.2;
+  }
+
+  &:nth-child(1) {
+    transform: rotate(180deg);
+  }
+}
+
+
+
+.nftImage {
+  max-width: 228px;
+  height: 232px;
+  //margin: 0 40px;
+  mask-image: url('/images/shape.png');
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.currentCountImage {
+  margin-top: 10px;
+  font-size: 24px;
 }
 
 .description {

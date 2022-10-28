@@ -12,6 +12,7 @@
     width: 529px;
     max-width: 529px;
     height: 335px;
+    padding-bottom: 20px;
   }
 }
 
@@ -21,13 +22,27 @@
   font-size: 32px;
 }
 
+
+.error {
+  color: #d2001e;
+  font-size: 22px;
+  margin-top: 10px;
+  opacity: 0;
+  transition: opacity .2s linear;
+
+  &.active {
+    opacity: 1;
+  }
+}
+
 .buttons {
   display: flex;
   margin-top: 35px;
   flex-flow: column nowrap;
 
   @media (min-width: $media-screen-notebook) {
-    margin-top: 50px;
+    margin-top: 15px;
+    margin-top: auto;
     flex-flow: row nowrap;
   }
 }
@@ -76,14 +91,14 @@
   border: 4px solid #9C8060;
 
   &.loading,
-  &.error {
+  &.errorBtn {
     justify-content: space-between;
     flex-flow: row nowrap;
     padding: 0;
     align-items: center;
   }
 
-  &.error {
+  &.errorBtn {
     background-color: #FF4F6F;
 
     &:hover {

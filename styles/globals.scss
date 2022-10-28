@@ -17,6 +17,31 @@ a {
 //  fill: inherit;
 //}
 
+.swiper-wrapper {
+  //overflow: hidden;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  width: 40px!important;
+  height: 23px!important;
+
+  &:after {
+    display: none;
+  }
+}
+
+.swiper-button-prev {
+  background: url('/images/arrow.png') no-repeat 100% 100% / contain;
+  transform: rotate(180deg);
+  left: -80px!important;
+}
+
+.swiper-button-next {
+  background: url('/images/arrow.png') no-repeat 100% 100% / contain;
+  right: -80px!important;
+}
+
 *,
 *:before,
 *:after {

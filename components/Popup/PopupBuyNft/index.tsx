@@ -5,7 +5,6 @@ import PopupLayout from "../PopupLayout"
 import classNames from "classnames"
 import {ErrorButton} from "./StatesButton/ErrorButton"
 import LoadingButton from "./StatesButton/LoadingButton"
-import {useMint} from "./useMint"
 import {AptosClient} from "aptos";
 import {useWallet} from '@manahippo/aptos-wallet-adapter';
 import cmHelper from "../../../helpers/candyMachineHelper"
@@ -17,6 +16,9 @@ import {
     CONTRACT_ADDRESS,
     COLLECTION_SIZE
 } from "../../../helpers/candyMachineInfo"
+import {useDispatch} from "react-redux";
+import {changeMintedImages} from "../../../redux/actions/mint";
+import {changeCurrentPopup} from "../../../redux/actions/popup";
 
 const aptosClient = new AptosClient(NODE_URL);
 const autoCmRefresh = 10000;
@@ -46,18 +48,36 @@ interface MintInfo {
 
 const PopupBuyNft = () => {
     const wallet = useWallet();
+    const dispatch = useDispatch()
     const [isFetchignCmData, setIsFetchignCmData] = useState(false)
     const [candyMachineData, setCandyMachineData] = useState<CandyMachine>({data: {}, fetch: fetchCandyMachineData})
-    const [timeLeftToMint, setTimeLeftToMint] = useState<any>({presale: "", public: "", timeout: null})
-    // const [amount, setAmount] = useState(0)
+    // const [timeLeftToMint, setTimeLeftToMint] = useState<any>({presale: "", public: "", timeout: null})
     const [mintInfo, setMintInfo] = useState<MintInfo>({numToMint: 1, minting: false, success: false, mintedNfts: []})
     const [canMint, setCanMint] = useState(false)
-    const max = candyMachineData.data.maxMintsPerWallet === undefined ? 10 : Math.min(candyMachineData.data.maxMintsPerWallet, candyMachineData.data.numUploadedTokens - candyMachineData.data.numMintedTokens)
+    const [error, setError] = useState(null)
+    const [maxAmount, setMaxAmount] = useState(0)
+    // const max = candyMachineData.data.maxMintsPerWallet === undefined
+    //     ? 10
+    //     : Math.min(candyMachineData.data.maxMintsPerWallet, candyMachineData.data.numUploadedTokens - candyMachineData.data.numMintedTokens)
 
+    useEffect(() => {
+        const {data: {maxMintsPerWallet, numUploadedTokens, numMintedTokens}} = candyMachineData
+        console.log('_____ CANDY MACHINE ______')
+        console.log('maxMintsPerWallet', maxMintsPerWallet)
+        console.log('numUploadedTokens', numUploadedTokens)
+        console.log('numMintedTokens', numMintedTokens)
+        console.log('__________________________')
+        if (maxMintsPerWallet === undefined) {
+            setMaxAmount(10)
+        } else {
+            // setMaxAmount(Math.min(maxMintsPerWallet, numUploadedTokens - numMintedTokens))
+            setMaxAmount(10)
+        }
+    }, [candyMachineData])
 
     const handlerChangeAmountNft = (value: number) => {
         const newValue = mintInfo.numToMint + value
-        if (newValue >= 0 && newValue <= max) {
+        if (newValue >= 0 && newValue <= maxAmount) {
             // setAmount(newValue)
             setMintInfo({...mintInfo, numToMint: newValue})
         }
@@ -65,6 +85,11 @@ const PopupBuyNft = () => {
     }
 
     const mint = async () => {
+        if (error) {
+            setError(null)
+            return
+        }
+
         console.log('wallet.account?.address?.toString()', wallet.account?.address?.toString());
         if (wallet.account?.address?.toString() === undefined || mintInfo.minting) {
             return
@@ -82,7 +107,7 @@ const PopupBuyNft = () => {
                 mintInfo.numToMint,
             ]
         };
-
+        //
         let txInfo;
         try {
             const txHash = await wallet.signAndSubmitTransaction(payload);
@@ -94,41 +119,57 @@ const PopupBuyNft = () => {
                 vm_status: err.message,
             }
         }
-
+        //
         console.log('txInfo', txInfo)
         await handleMintTxResult(txInfo)
-        if (txInfo.success) setCandyMachineData({...candyMachineData, data: {...candyMachineData.data, numMintedTokens: (parseInt(candyMachineData.data.numMintedTokens) + Number(mintInfo.numToMint)).toString()}})
+
+        if (txInfo.success) {
+            const {data: {numMintedTokens}} = candyMachineData
+            const {numToMint} = mintInfo
+
+            setCandyMachineData(prev => {
+                const newData = {...prev}
+                newData.data.numMintedTokens = (Number(numMintedTokens) + Number(numToMint)).toString()
+                return newData
+            })
+        }
     }
 
 
     async function handleMintTxResult(txInfo) {
-        console.log(txInfo);
         const mintSuccess = txInfo.success;
 
-        console.log(mintSuccess ? "Mint success!" : `Mint failure, an error occured.`)
+        console.log(mintSuccess ? "Mint success!" : `Mint failure, an error occurred.`)
         let mintedNfts = []
         if (!mintSuccess) {
             /// Handled error messages
-
-            const handledErrorMessages = new Map([
-                ["Failed to sign transaction", "An error occured while signing."],
-                ["Move abort in 0x1::coin: EINSUFFICIENT_BALANCE(0x10006): Not enough coins to complete transaction", "Insufficient funds to mint."],
-            ]);
-            const txStatusError = txInfo.vm_status;
-            console.error(`Mint not successful: ${txStatusError}`);
-            let errorMessage = handledErrorMessages.get(txStatusError);
-            errorMessage = errorMessage === undefined ? "Unkown error occured. Try again." : errorMessage;
+            //
+            // const handledErrorMessages = new Map([
+            //     ["Failed to sign transaction", "An error occured while signing."],
+            //     ["Move abort in 0x1::coin: EINSUFFICIENT_BALANCE(0x10006): Not enough coins to complete transaction", "Insufficient funds to mint."],
+            // ]);
+            // const txStatusError = txInfo.vm_status;
+            // console.log('txInfo.vm_status error', txInfo.vm_status)
+            // console.error(`Mint not successful: ${txStatusError}`);
+            // let errorMessage = handledErrorMessages.get(txStatusError);
+            // console.log('errorMessage', errorMessage)
+            // setError(errorMessage)
+            // errorMessage = errorMessage === undefined ? "Unkown error occured. Try again." : errorMessage;
+            setError('Error')
         } else {
-            mintedNfts = await cmHelper.getMintedNfts(aptosClient, candyMachineData.data.tokenDataHandle, candyMachineData.data.cmResourceAccount, collectionName, txInfo)
+            const {data: {tokenDataHandle, cmResourceAccount}} = candyMachineData
+            mintedNfts = await cmHelper.getMintedNfts(aptosClient, tokenDataHandle, cmResourceAccount, collectionName, txInfo)
         }
         setMintInfo({...mintInfo, minting: false, success: mintSuccess, mintedNfts})
-
     }
 
     async function fetchCandyMachineData(indicateIsFetching = false) {
         console.log("Fetching candy machine data...")
-        if (indicateIsFetching) setIsFetchignCmData(true)
+        if (indicateIsFetching) {
+            setIsFetchignCmData(true)
+        }
         const cmResourceAccount = await cmHelper.getCandyMachineResourceAccount();
+        console.log('cmResourceAccount', cmResourceAccount)
         if (cmResourceAccount === null) {
             setCandyMachineData({...candyMachineData, data: {}})
             setIsFetchignCmData(false)
@@ -136,54 +177,70 @@ const PopupBuyNft = () => {
         }
 
         const collectionInfo = await cmHelper.getCandyMachineCollectionInfo(cmResourceAccount);
+        console.log('collectionInfo', collectionInfo);
         const configData = await cmHelper.getCandyMachineConfigData(collectionInfo.candyMachineConfigHandle);
+        console.log('configData', configData);
         setCandyMachineData({...candyMachineData, data: {cmResourceAccount, ...collectionInfo, ...configData}})
         setIsFetchignCmData(false)
     }
 
-    function verifyTimeLeftToMint() {
-        const mintTimersTimeout = setTimeout(verifyTimeLeftToMint, 1000)
-        if (candyMachineData.data.presaleMintTime === undefined || candyMachineData.data.publicMintTime === undefined) {
-            return
+    useEffect(() => {
+        if (mintInfo.success && mintInfo.mintedNfts?.length > 0) {
+            dispatch(changeMintedImages(mintInfo.mintedNfts))
+            dispatch(changeCurrentPopup('success'))
         }
+    }, [mintInfo.success])
 
-        const currentTime = Math.round(new Date().getTime() / 1000);
-        setTimeLeftToMint({
-            timeout: mintTimersTimeout,
-            presale: cmHelper.getTimeDifference(currentTime, candyMachineData.data.presaleMintTime),
-            public: cmHelper.getTimeDifference(currentTime, candyMachineData.data.publicMintTime)
-        })
-    }
+    // function verifyTimeLeftToMint() {
+    //     const mintTimersTimeout = setTimeout(verifyTimeLeftToMint, 1000)
+    //
+    //     const {data: {presaleMintTime, publicMintTime}} = candyMachineData
+    //     if (presaleMintTime === undefined || publicMintTime === undefined) {
+    //         return
+    //     }
+    //
+    //     const currentTime = Math.round(new Date().getTime() / 1000);
+    //     setTimeLeftToMint({
+    //         timeout: mintTimersTimeout,
+    //         presale: cmHelper.getTimeDifference(currentTime, presaleMintTime),
+    //         public: cmHelper.getTimeDifference(currentTime, publicMintTime)
+    //     })
+    // }
 
     useEffect(() => {
         void fetchCandyMachineData(true)
-        const timer = setInterval(fetchCandyMachineData, autoCmRefresh)
-
-        return () => {
-            clearInterval(timer)
-        }
+        // const refetchTimer = setInterval(fetchCandyMachineData, autoCmRefresh)
+        //
+        // return () => {
+        //     clearInterval(refetchTimer)
+        // }
     }, [])
 
-    useEffect(() => {
-        clearTimeout(timeLeftToMint.timeout)
-        verifyTimeLeftToMint()
-        console.log(candyMachineData.data)
+    // useEffect(() => {
+    //     clearTimeout(timeLeftToMint.timeout)
+    //     verifyTimeLeftToMint()
+    //     console.log(candyMachineData.data)
+    //
+    //     return () => {
+    //         clearTimeout(timeLeftToMint.timeout)
+    //     }
+    // }, [candyMachineData])
 
-        return () => {
-            clearTimeout(timeLeftToMint.timeout)
-        }
-    }, [candyMachineData])
 
-
-    useEffect(() => {
-        setCanMint(true)
-    }, [wallet, candyMachineData, timeLeftToMint])
+    // useEffect(() => {
+    //     setCanMint(true)
+    // }, [wallet, candyMachineData, timeLeftToMint])
 
 
     return (
         <PopupLayout>
             <div className={styles.popup}>
                 <span className={styles.title}>buy NFT with $DC</span>
+                <span className={classNames(styles.error, {
+                    [styles.active]: error
+                })}>
+                    {error}
+                </span>
 
                 <div className={styles.buttons}>
                     <div className={styles.counter}>
@@ -197,11 +254,11 @@ const PopupBuyNft = () => {
                         className={classNames(styles.button, {
                             // [styles.disabled]: !canMint,
                             [styles.loading]: mintInfo.minting,
-                            // [styles.error]: !canMint
+                            [styles.errorBtn]: error
                         })}
                     >
                         {
-                            !mintInfo.minting &&
+                            !mintInfo.minting && !error &&
                             <span className={styles.text}>
                                     {/*{*/}
                                 {/*    isApprove*/}
@@ -216,25 +273,15 @@ const PopupBuyNft = () => {
                             mintInfo.minting && <LoadingButton/>
                         }
 
-                        {/*{*/}
-                        {/*    !canMint && <ErrorButton/>*/}
-                        {/*}*/}
+                        {
+                            error && <ErrorButton/>
+                        }
                     </Button>
                 </div>
 
-                <span className={styles.available}>1/{max} available</span>
-
-                {
-                    mintInfo.success &&
-                    <div style={{flexWrap: "wrap"}}>
-                        {
-                            mintInfo.mintedNfts.map(mintedNft => <div key={mintedNft.name}>
-                                <img src={mintedNft.imageUri === null ? "" : mintedNft.imageUri}/>
-                                <h5>{mintedNft.name}</h5>
-                            </div>)
-                        }
-                    </div>
-                }
+                <span
+                    className={styles.available}>{maxAmount}/{candyMachineData?.data?.maxMintsPerWallet || 0} available
+                </span>
             </div>
         </PopupLayout>
     )
