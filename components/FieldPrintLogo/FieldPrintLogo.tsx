@@ -6,23 +6,17 @@ export const FieldPrintLogo = () => {
     const [items, setItems] = useState([])
 
     const onClickWrapper = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
-        console.log(event.clientY)
-        console.log(event.clientX)
         const x = event.pageX - 15
-        const y =  event.pageY - 15
+        const y = event.pageY - 15
 
         const findItem = items.find((item) => item.x === x && item.y === y)
 
         if (!findItem) {
-            console.log('not found')
             setItems(prev => {
-                return [...prev, {
-                    x: event.pageX - 15,
-                    y: event.pageY - 15
-                }]
+                return [...prev, {x, y}]
             })
         }
-    }, [])
+    }, [items])
 
     return (
         <div onClick={onClickWrapper} className={styles.field}>
@@ -33,7 +27,7 @@ export const FieldPrintLogo = () => {
                             left: x,
                             top: y
                         }}
-                        key={x + y + index}
+                        key={x + y + index + Math.random()}
                         className={styles.logo}
                         src="/images/logo.png"
                         alt="LOGO"

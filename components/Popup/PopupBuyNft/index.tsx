@@ -52,7 +52,7 @@ const PopupBuyNft = () => {
     const [isFetchignCmData, setIsFetchignCmData] = useState(false)
     const [candyMachineData, setCandyMachineData] = useState<CandyMachine>({data: {}, fetch: fetchCandyMachineData})
     // const [timeLeftToMint, setTimeLeftToMint] = useState<any>({presale: "", public: "", timeout: null})
-    const [mintInfo, setMintInfo] = useState<MintInfo>({numToMint: 1, minting: false, success: false, mintedNfts: []})
+    const [mintInfo, setMintInfo] = useState<MintInfo>({numToMint: 0, minting: false, success: false, mintedNfts: []})
     const [canMint, setCanMint] = useState(false)
     const [error, setError] = useState(null)
     const [maxAmount, setMaxAmount] = useState(0)
@@ -68,10 +68,10 @@ const PopupBuyNft = () => {
         console.log('numMintedTokens', numMintedTokens)
         console.log('__________________________')
         if (maxMintsPerWallet === undefined) {
-            setMaxAmount(10)
+            setMaxAmount(0)
         } else {
             // setMaxAmount(Math.min(maxMintsPerWallet, numUploadedTokens - numMintedTokens))
-            setMaxAmount(10)
+            setMaxAmount(maxMintsPerWallet - numMintedTokens)
         }
     }, [candyMachineData])
 
@@ -252,7 +252,7 @@ const PopupBuyNft = () => {
                     <Button
                         onClick={mint}
                         className={classNames(styles.button, {
-                            // [styles.disabled]: !canMint,
+                            [styles.disabled]: maxAmount === 0,
                             [styles.loading]: mintInfo.minting,
                             [styles.errorBtn]: error
                         })}
@@ -280,7 +280,10 @@ const PopupBuyNft = () => {
                 </div>
 
                 <span
-                    className={styles.available}>{maxAmount}/{candyMachineData?.data?.maxMintsPerWallet || 0} available
+                    className={styles.available}>
+                    {maxAmount}
+                    /
+                    {candyMachineData?.data?.maxMintsPerWallet || 0} available
                 </span>
             </div>
         </PopupLayout>
