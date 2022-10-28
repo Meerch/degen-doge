@@ -19,7 +19,7 @@ const MintDetails = () => {
                 {/*<span className={styles.convert}>( ~$9 )</span>*/}
             </div>
             <span className={styles.text}>Limit per wallet: {mintDetails.limitPerWallet || 'TBA'} NFTs</span>
-            <span className={styles.text}>Supply: {mintDetails.supply || 'TBA'} HFTs</span>
+            <span className={styles.text}>Supply: {mintDetails.supply || 'TBA'} NFTs</span>
             {/*<span className={styles.text}>NFT distribution: {mintDetails.nftDistribution}</span>*/}
         </div>
     )
