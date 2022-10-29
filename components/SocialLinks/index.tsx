@@ -10,7 +10,7 @@ const socialLinks = [
     },
     {
         name: 'discord',
-        href: 'https://discord.com'
+        href: 'https://discord.gg/VYAXPXZKjg'
     },
 
 ]
