@@ -71,7 +71,8 @@ const PopupBuyNft = () => {
             setMaxAmount(0)
         } else {
             // setMaxAmount(Math.min(maxMintsPerWallet, numUploadedTokens - numMintedTokens))
-            setMaxAmount(maxMintsPerWallet - numMintedTokens)
+            // setMaxAmount(maxMintsPerWallet - numMintedTokens)
+            setMaxAmount(numMintedTokens)
         }
     }, [candyMachineData])
 
