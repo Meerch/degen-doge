@@ -44,14 +44,17 @@ const PopupSuccess = () => {
             <div className={styles.progress}/>
             <span className={styles.title}>Congrats!!!</span>
             <div className={styles.galleryWrapper}>
-                <img
-                    ref={navigationPrevRef}
-                    src='/images/arrow.png'
-                    className={classNames(styles.arrow, {
-                        [styles.inactive]: progressGallery === 0
-                    })}
-                    alt='-->'
-                />
+                {
+                    mintedImages.length > 1 &&
+                    <img
+                        ref={navigationPrevRef}
+                        src='/images/arrow.png'
+                        className={classNames(styles.arrow, {
+                            [styles.inactive]: progressGallery === 0
+                        })}
+                        alt='-->'
+                    />
+                }
                 <Swiper
                     className={styles.gallery}
                     slidesPerView={1}
@@ -86,14 +89,16 @@ const PopupSuccess = () => {
                     }
                 </Swiper>
 
-                <img
-                    ref={navigationNextRef}
-                    src='/images/arrow.png'
-                    className={classNames(styles.arrow, {
-                        [styles.inactive]: progressGallery === 1
-                    })}
-                    alt='<--'
-                />
+                {
+                    mintedImages.length > 1 && <img
+                        ref={navigationNextRef}
+                        src='/images/arrow.png'
+                        className={classNames(styles.arrow, {
+                            [styles.inactive]: progressGallery === 1
+                        })}
+                        alt='<--'
+                    />
+                }
             </div>
 
 
