@@ -23,7 +23,7 @@ const PopupConnectWallet = () => {
 
     const onConnect = async (name: WalletName) => {
         try {
-            await connect(name)
+            const test = await connect(name)
         } catch {
             console.log('error')
         }

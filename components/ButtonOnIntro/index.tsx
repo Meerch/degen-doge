@@ -16,11 +16,11 @@ const ButtonOnIntro: FC<ButtonOnIntroProps> = ({className}) => {
     const {connected} = useWallet()
 
     const handlerClickButton = () => {
-        if (!connected) {
-            dispatch(changeCurrentPopup('connect-wallet'))
-        } else {
-            dispatch(changeCurrentPopup('buy-nft'))
-        }
+        // if (!connected) {
+        //     dispatch(changeCurrentPopup('connect-wallet'))
+        // } else {
+        //     dispatch(changeCurrentPopup('buy-nft'))
+        // }
     }
 
     return (
